@@ -2,8 +2,10 @@ package com.example.javierhuinocana.grupo03_cibertec;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.javierhuinocana.grupo03_cibertec.adap_spiner.SpinerAdapter;
 
@@ -33,10 +35,31 @@ public class ListaOrdenesActivity extends AppCompatActivity {
         ArrayFiltro.add("Liquidadas");
         ArrayFiltro.add("Rechazadas");
 
-        SpinerAdaptador= new SpinerAdapter(ListaOrdenesActivity.this,ArrayFiltro);
+        SpinerAdaptador = new SpinerAdapter(ListaOrdenesActivity.this, ArrayFiltro);
         cboFiltrar.setAdapter(SpinerAdaptador);
 
-        //ArrayList<String> Adaptador =
-
+        btnLiquidar.setOnClickListener(btnLiquidarOnClickListener);
+        btnRechazar.setOnClickListener(btnRechazarOnClickListener);
+        btnMapa.setOnClickListener(btnMapaOnClickListener);
     }
+
+    View.OnClickListener btnLiquidarOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(ListaOrdenesActivity.this, "Se liquidara", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    View.OnClickListener btnRechazarOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(ListaOrdenesActivity.this, "Se rechazara", Toast.LENGTH_SHORT).show();
+        }
+    };
+    View.OnClickListener btnMapaOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(ListaOrdenesActivity.this, "Se vera mapa", Toast.LENGTH_SHORT).show();
+        }
+    };
 }
