@@ -1,5 +1,6 @@
 package com.example.javierhuinocana.grupo03_cibertec;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.javierhuinocana.grupo03_cibertec.adap_spiner.SpinerAdapter;
+import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,9 @@ public class ListaOrdenesActivity extends AppCompatActivity {
     Button btnLiquidar, btnRechazar, btnMapa;
     private SpinerAdapter SpinerAdaptador;
 
+    /*CODIGO QUE SE BORRARA*/
+    Button btnVerDetalle;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +33,11 @@ public class ListaOrdenesActivity extends AppCompatActivity {
         cboFiltrar = (Spinner) findViewById(R.id.cboFiltrar);
         btnLiquidar = (Button) findViewById(R.id.btnLiquidar);
         btnRechazar = (Button) findViewById(R.id.btnRechazar);
+
+
+        btnVerDetalle=(Button)findViewById(R.id.btnVerDetalle);
+
+
         btnMapa = (Button) findViewById(R.id.btnMapa);
 
         ArrayList<String> ArrayFiltro = new ArrayList<>();
@@ -41,6 +51,9 @@ public class ListaOrdenesActivity extends AppCompatActivity {
         btnLiquidar.setOnClickListener(btnLiquidarOnClickListener);
         btnRechazar.setOnClickListener(btnRechazarOnClickListener);
         btnMapa.setOnClickListener(btnMapaOnClickListener);
+
+        /*CODIGO QUE SE BORRARA*/
+        btnVerDetalle.setOnClickListener(btnVerDetalleOnClickListener);
     }
 
     View.OnClickListener btnLiquidarOnClickListener = new View.OnClickListener() {
@@ -60,6 +73,14 @@ public class ListaOrdenesActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Toast.makeText(ListaOrdenesActivity.this, "Se vera mapa", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    View.OnClickListener btnVerDetalleOnClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(ListaOrdenesActivity.this,DetalleOrdenesActivity.class);
+            startActivity(intent);
         }
     };
 }
