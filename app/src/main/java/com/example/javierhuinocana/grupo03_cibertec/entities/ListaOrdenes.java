@@ -18,26 +18,11 @@ public class ListaOrdenes implements Parcelable {
     private String Coordenada;
     private String Fecha_Registro;
     private String Fecha_Liquidacion;
+    private String Observaciones;
     private int Estado;
 
-    public ListaOrdenes(){
-
+    public ListaOrdenes() {
     }
-
-    /*public ListaOrdenes(int idOrden, String orden, String telefono, String cliente, String direccion, String negocio, String actividad, String dniCliente, String coordenada, String fecha_registro, String fecha_liquidacion, int estado) {
-        IdOrden = idOrden;
-        Orden = orden;
-        Telefono = telefono;
-        Cliente = cliente;
-        Direccion = direccion;
-        Negocio = negocio;
-        Actividad = actividad;
-        DniCliente = dniCliente;
-        Coordenada = coordenada;
-        Fecha_Registro = fecha_registro;
-        Fecha_Liquidacion = fecha_liquidacion;
-        Estado = estado;
-    }*/
 
     public int getIdOrden() {
         return IdOrden;
@@ -127,6 +112,14 @@ public class ListaOrdenes implements Parcelable {
         Fecha_Liquidacion = fecha_Liquidacion;
     }
 
+    public String getObservaciones() {
+        return Observaciones;
+    }
+
+    public void setObservaciones(String observaciones) {
+        Observaciones = observaciones;
+    }
+
     public int getEstado() {
         return Estado;
     }
@@ -147,6 +140,7 @@ public class ListaOrdenes implements Parcelable {
         Coordenada = in.readString();
         Fecha_Registro = in.readString();
         Fecha_Liquidacion = in.readString();
+        Observaciones = in.readString();
         Estado = in.readInt();
     }
 
@@ -168,6 +162,7 @@ public class ListaOrdenes implements Parcelable {
         dest.writeString(Coordenada);
         dest.writeString(Fecha_Registro);
         dest.writeString(Fecha_Liquidacion);
+        dest.writeString(Observaciones);
         dest.writeInt(Estado);
     }
 

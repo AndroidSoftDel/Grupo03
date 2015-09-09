@@ -28,6 +28,14 @@ public class ListadoDAO {
                     listaOrdenes.setTelefono(cursor.isNull(cursor.getColumnIndex("Telefono")) ? "" : cursor.getString(cursor.getColumnIndex("Telefono")));
                     listaOrdenes.setCliente(cursor.isNull(cursor.getColumnIndex("Cliente")) ? "" : cursor.getString(cursor.getColumnIndex("Cliente")));
                     listaOrdenes.setDireccion(cursor.isNull(cursor.getColumnIndex("Direccion")) ? "" : cursor.getString(cursor.getColumnIndex("Direccion")));
+                    listaOrdenes.setNegocio(cursor.isNull(cursor.getColumnIndex("Negocio")) ? "" : cursor.getString(cursor.getColumnIndex("Negocio")));
+                    listaOrdenes.setActividad(cursor.isNull(cursor.getColumnIndex("Actividad")) ? "" : cursor.getString(cursor.getColumnIndex("Actividad")));
+                    listaOrdenes.setDniCliente(cursor.isNull(cursor.getColumnIndex("DniCliente")) ? "" : cursor.getString(cursor.getColumnIndex("DniCliente")));
+                    listaOrdenes.setCoordenada(cursor.isNull(cursor.getColumnIndex("Coordenada")) ? "" : cursor.getString(cursor.getColumnIndex("Coordenada")));
+                    listaOrdenes.setFecha_Registro(cursor.isNull(cursor.getColumnIndex("Fecha_Registro")) ? "" : cursor.getString(cursor.getColumnIndex("Fecha_Registro")));
+                    listaOrdenes.setFecha_Liquidacion(cursor.isNull(cursor.getColumnIndex("Fecha_Liquidacion")) ? "" : cursor.getString(cursor.getColumnIndex("Fecha_Liquidacion")));
+                    listaOrdenes.setObservaciones(cursor.isNull(cursor.getColumnIndex("Observaciones")) ? "" : cursor.getString(cursor.getColumnIndex("Observaciones")));
+                    listaOrdenes.setEstado(cursor.isNull(cursor.getColumnIndex("Estado")) ? 0 : cursor.getInt(cursor.getColumnIndex("Estado")));
                     lstOrdenes.add(listaOrdenes);
                 } while (cursor.moveToNext());
             }
@@ -47,8 +55,8 @@ public class ListadoDAO {
         try {
             ContentValues cv = new ContentValues();
             cv.put("DniCliente", listaOrdenes.getDniCliente());
-            cv.put("Estado", listaOrdenes.getEstado());
             cv.put("Fecha_Liquidacion", listaOrdenes.getFecha_Liquidacion());
+            cv.put("Estado", listaOrdenes.getEstado());
 
             DataBaseHelper.myDataBase.beginTransaction();
             udp = DataBaseHelper.myDataBase.update("ListadoOrdenes", cv, "IdOrden = ?", new String[]{String.valueOf(listaOrdenes.getIdOrden())});
