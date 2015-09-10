@@ -8,60 +8,79 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Filtrar:" />
+
+            <Spinner
+                android:id="@+id/cboFiltrar"
+                android:layout_width="0dp"
+                android:layout_height="45dp"
+                android:layout_weight="2"
+
+                ></Spinner>
+
+            <Button
+                android:id="@+id/btnLiquidar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="L" />
+
+            <Button
+                android:id="@+id/btnRechazar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="R" />
+
+            <Button
+                android:id="@+id/btnMapa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="M" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Filtrar:" />
+            android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/cboFiltrar"
-            android:layout_width="0dp"
-            android:layout_height="45dp"
-            android:layout_weight="2"
 
-            ></Spinner>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvPrincipal"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"/>
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnLiquidar"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="L" />
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnRechazar"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="R" />
+            <Button
+                android:id="@+id/btnVerDetalle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="Ver Detalle Orden" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/btnMapa"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="M" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnVerDetalle"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="Ver Detalle Orden" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvPrincipal"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"/>
-    </RelativeLayout>
 
 
 </LinearLayout>
