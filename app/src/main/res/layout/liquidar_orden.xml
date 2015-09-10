@@ -16,6 +16,7 @@
             android:text="Orden:" />
 
         <EditText
+            android:id="@+id/txtOrden_Liquidar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2" />
@@ -27,6 +28,7 @@
             android:text="Teléfono:" />
 
         <EditText
+            android:id="@+id/txtTelefono_Liquidar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2" />
@@ -57,7 +59,7 @@
                 android:text="Atendió:" />
 
             <EditText
-                android:id="@+id/txtAtendio"
+                android:id="@+id/txtAtendio_Liquidar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -76,7 +78,7 @@
                 android:text="DNI:" />
 
             <EditText
-                android:id="@+id/txtDNI"
+                android:id="@+id/txtDNI_Liquidar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
@@ -91,12 +93,12 @@
         android:text="Observaciones:" />
 
     <EditText
-        android:id="@+id/txtObservaciones"
+        android:id="@+id/txtObservaciones_Liquidar"
         android:layout_width="match_parent"
         android:layout_height="60dp" />
 
     <Button
-        android:id="@+id/btnAddMateriales"
+        android:id="@+id/btnAddMateriales_Liquidar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add MAT" />

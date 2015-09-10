@@ -16,7 +16,7 @@
             android:text="Zonal:" />
 
         <EditText
-            android:id="@+id/txtZonal"
+            android:id="@+id/txtZonal_Detalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4" />
@@ -34,7 +34,7 @@
             android:text="Negocio:" />
 
         <EditText
-            android:id="@+id/txtNegocio"
+            android:id="@+id/txtNegocio_Detalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4" />
@@ -52,7 +52,7 @@
             android:text="Actividad:" />
 
         <EditText
-            android:id="@+id/txtActividad"
+            android:id="@+id/txtActividad_Detalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4" />
@@ -70,7 +70,7 @@
             android:text="Orden:" />
 
         <EditText
-            android:id="@+id/txtOrden"
+            android:id="@+id/txtOrden_Detalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4" />
@@ -88,7 +88,7 @@
             android:text="Teléfono:" />
 
         <EditText
-            android:id="@+id/txtTelefono"
+            android:id="@+id/txtTelefono_Detalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4" />
@@ -106,7 +106,7 @@
             android:text="Cliente:" />
 
         <EditText
-            android:id="@+id/txtCliente"
+            android:id="@+id/txtCliente_Detalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4" />
@@ -124,7 +124,7 @@
             android:text="Dirección:" />
 
         <EditText
-            android:id="@+id/txtDireccion"
+            android:id="@+id/txtDireccion_Detalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="4" />

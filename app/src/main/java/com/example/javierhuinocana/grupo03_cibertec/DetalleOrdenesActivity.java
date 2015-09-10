@@ -20,13 +20,13 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detalle_orden);
 
-        txtZonal=(EditText)findViewById(R.id.txtZonal);
-        txtNegocio=(EditText)findViewById(R.id.txtNegocio);
-        txtActividad=(EditText)findViewById(R.id.txtActividad);
-        txtOrden=(EditText)findViewById(R.id.txtOrden);
-        txtTelefono=(EditText)findViewById(R.id.txtTelefono);
-        txtCliente=(EditText)findViewById(R.id.txtCliente);
-        txtDireccion=(EditText)findViewById(R.id.txtDireccion);
+        txtZonal=(EditText)findViewById(R.id.txtZonal_Detalle);
+        txtNegocio=(EditText)findViewById(R.id.txtNegocio_Detalle);
+        txtActividad=(EditText)findViewById(R.id.txtActividad_Detalle);
+        txtOrden=(EditText)findViewById(R.id.txtOrden_Detalle);
+        txtTelefono=(EditText)findViewById(R.id.txtTelefono_Detalle);
+        txtCliente=(EditText)findViewById(R.id.txtCliente_Detalle);
+        txtDireccion=(EditText)findViewById(R.id.txtDireccion_Detalle);
         btnVerMapa=(Button)findViewById(R.id.btnVerMapa_Detalle);
         btnLiquidar=(Button)findViewById(R.id.btnLiquidar_Detalle);
         btnRechazar=(Button)findViewById(R.id.btnRechazar_Detalle);

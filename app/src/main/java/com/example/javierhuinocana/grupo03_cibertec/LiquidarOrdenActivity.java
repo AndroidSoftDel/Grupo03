@@ -20,15 +20,23 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.liquidar_orden);
 
-        txtOrden = (EditText) findViewById(R.id.txtOrden);
-        txtTelefono = (EditText) findViewById(R.id.txtTelefono);
-        txtAtendio = (EditText) findViewById(R.id.txtAtendio);
-        txtDni = (EditText) findViewById(R.id.txtDNI);
-        txtObservaciones = (EditText) findViewById(R.id.txtObservaciones);
+        txtOrden = (EditText) findViewById(R.id.txtOrden_Liquidar);
+        txtTelefono = (EditText) findViewById(R.id.txtTelefono_Liquidar);
+        txtAtendio = (EditText) findViewById(R.id.txtAtendio_Liquidar);
+        txtDni = (EditText) findViewById(R.id.txtDNI_Liquidar);
+        txtObservaciones = (EditText) findViewById(R.id.txtObservaciones_Liquidar);
 
-        btnAddMat = (Button) findViewById(R.id.btnAddMateriales);
+        btnAddMat = (Button) findViewById(R.id.btnAddMateriales_Liquidar);
         btnLiquidar = (Button) findViewById(R.id.btnLiquidarOrden_Liquidar);
 
+        /*PARA CANCELAR LA EDICION EN LOS CONTROLES*/
+        txtOrden.setKeyListener(null);
+        txtTelefono.setKeyListener(null);
+
+        /*ENVIAMOS FOCO*/
+        txtAtendio.requestFocus();
+
+        /*ASOCIAMOS EVENTOS CLICK*/
         btnAddMat.setOnClickListener(btnAddMatOnClickListener);
         btnLiquidar.setOnClickListener(btnLiquidarOnClickListener);
     }
