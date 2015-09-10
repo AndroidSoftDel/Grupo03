@@ -1,5 +1,6 @@
 package com.example.javierhuinocana.grupo03_cibertec;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,13 +20,13 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detalle_orden);
 
-        txtZonal=(EditText)findViewById(R.id.txtZonal);
-        txtNegocio=(EditText)findViewById(R.id.txtNegocio);
-        txtActividad=(EditText)findViewById(R.id.txtActividad);
-        txtOrden=(EditText)findViewById(R.id.txtOrden);
-        txtTelefono=(EditText)findViewById(R.id.txtTelefono);
-        txtCliente=(EditText)findViewById(R.id.txtCliente);
-        txtDireccion=(EditText)findViewById(R.id.txtDireccion);
+        txtZonal=(EditText)findViewById(R.id.txtZonal_Detalle);
+        txtNegocio=(EditText)findViewById(R.id.txtNegocio_Detalle);
+        txtActividad=(EditText)findViewById(R.id.txtActividad_Detalle);
+        txtOrden=(EditText)findViewById(R.id.txtOrden_Detalle);
+        txtTelefono=(EditText)findViewById(R.id.txtTelefono_Detalle);
+        txtCliente=(EditText)findViewById(R.id.txtCliente_Detalle);
+        txtDireccion=(EditText)findViewById(R.id.txtDireccion_Detalle);
         btnVerMapa=(Button)findViewById(R.id.btnVerMapa_Detalle);
         btnLiquidar=(Button)findViewById(R.id.btnLiquidar_Detalle);
         btnRechazar=(Button)findViewById(R.id.btnRechazar_Detalle);
@@ -64,13 +65,15 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
     View.OnClickListener btnLiquidarOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            Intent intent = new Intent(DetalleOrdenesActivity.this,LiquidarOrdenActivity.class);
+            startActivity(intent);
         }
     };
     View.OnClickListener btnRechazarOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            Intent intent = new Intent(DetalleOrdenesActivity.this,RechazarOrdenActivity.class);
+            startActivity(intent);
         }
     };
 }
