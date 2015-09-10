@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.example.javierhuinocana.grupo03_cibertec.adap_recyclerview.RVListadoAdapter;
 import com.example.javierhuinocana.grupo03_cibertec.adap_spiner.SpinerAdapter;
+import com.example.javierhuinocana.grupo03_cibertec.dao.DataBaseHelper;
 import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
     private SpinerAdapter SpinerAdaptador;
     private RecyclerView rvPrincipal;
     private RVListadoAdapter rvListadoAdapter;
+    private DataBaseHelper dataBaseHelper;
 
     /*CODIGO QUE SE BORRARA*/
     Button btnVerDetalle;
@@ -57,6 +59,13 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         btnRechazar.setOnClickListener(btnRechazarOnClickListener);
         btnMapa.setOnClickListener(btnMapaOnClickListener);
 
+        try {
+            dataBaseHelper = new DataBaseHelper(ListaOrdenesActivity.this);
+            dataBaseHelper.createDataBase();
+            dataBaseHelper.openDataBase();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
 
         /*CODIGO QUE SE BORRARA*/
