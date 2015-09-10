@@ -57,6 +57,11 @@
             android:layout_alignParentBottom="true"
             android:text="Ver Detalle Orden" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvPrincipal"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"/>
     </RelativeLayout>
+
 
 </LinearLayout>

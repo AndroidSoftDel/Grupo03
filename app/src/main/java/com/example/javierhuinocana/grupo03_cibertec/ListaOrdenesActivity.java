@@ -3,11 +3,14 @@ package com.example.javierhuinocana.grupo03_cibertec;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.support.v7.widget.RecyclerView;
 
+import com.example.javierhuinocana.grupo03_cibertec.adap_recyclerview.RVListadoAdapter;
 import com.example.javierhuinocana.grupo03_cibertec.adap_spiner.SpinerAdapter;
 import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
 
@@ -16,11 +19,13 @@ import java.util.ArrayList;
 /**
  * Created by Javier Huiñocana on 07/09/2015.
  */
-public class ListaOrdenesActivity extends AppCompatActivity {
+public class ListaOrdenesActivity extends AppCompatActivity implements RVListadoAdapter.RVListadoAdapterCallBack{
 
     Spinner cboFiltrar;
     Button btnLiquidar, btnRechazar, btnMapa;
     private SpinerAdapter SpinerAdaptador;
+    private RecyclerView rvPrincipal;
+    private RVListadoAdapter rvListadoAdapter;
 
     /*CODIGO QUE SE BORRARA*/
     Button btnVerDetalle;
@@ -52,8 +57,17 @@ public class ListaOrdenesActivity extends AppCompatActivity {
         btnRechazar.setOnClickListener(btnRechazarOnClickListener);
         btnMapa.setOnClickListener(btnMapaOnClickListener);
 
+
+
         /*CODIGO QUE SE BORRARA*/
         btnVerDetalle.setOnClickListener(btnVerDetalleOnClickListener);
+
+        rvPrincipal = (RecyclerView) findViewById(R.id.rvPrincipal);
+        rvPrincipal.setHasFixedSize(true);
+        rvPrincipal.setLayoutManager(new LinearLayoutManager(ListaOrdenesActivity.this));
+
+        rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this);
+        rvPrincipal.setAdapter(rvListadoAdapter);
     }
 
     View.OnClickListener btnLiquidarOnClickListener = new View.OnClickListener() {
@@ -83,4 +97,9 @@ public class ListaOrdenesActivity extends AppCompatActivity {
             startActivity(intent);
         }
     };
+
+    @Override
+    public void onListadoClick(ListaOrdenes listaOrdenes, int position) {
+
+    }
 }

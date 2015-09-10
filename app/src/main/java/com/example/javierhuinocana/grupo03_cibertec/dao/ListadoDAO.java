@@ -18,7 +18,7 @@ public class ListadoDAO {
 
 
         try {
-            cursor = DataBaseHelper.myDataBase.query("Persona", null, null, null, null, null, null);
+            cursor = DataBaseHelper.myDataBase.query("ListaOrdenes", null, null, null, null, null, null);
 
             if (cursor.moveToFirst()) {
                 do {
@@ -59,7 +59,7 @@ public class ListadoDAO {
             cv.put("Estado", listaOrdenes.getEstado());
 
             DataBaseHelper.myDataBase.beginTransaction();
-            udp = DataBaseHelper.myDataBase.update("ListadoOrdenes", cv, "IdOrden = ?", new String[]{String.valueOf(listaOrdenes.getIdOrden())});
+            udp = DataBaseHelper.myDataBase.update("ListaOrdenes", cv, "IdOrden = ?", new String[]{String.valueOf(listaOrdenes.getIdOrden())});
             DataBaseHelper.myDataBase.setTransactionSuccessful();
         } catch (Exception ex) {
             ex.printStackTrace();
