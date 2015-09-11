@@ -28,6 +28,7 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
     private RecyclerView rvPrincipal;
     private RVListadoAdapter rvListadoAdapter;
     private DataBaseHelper dataBaseHelper;
+    private int Estado;
     public final static String ARG_ORDEN = "orden", ARG_POSITION = "position";
     private final static int REQUEST_CODE_EDITAR = 2;
     /*CODIGO QUE SE BORRARA*/
@@ -52,6 +53,7 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         ArrayFiltro.add("Pendientes");
         ArrayFiltro.add("Liquidadas");
         ArrayFiltro.add("Rechazadas");
+        Estado = 0;
 
         SpinerAdaptador = new SpinerAdapter(ListaOrdenesActivity.this, ArrayFiltro);
         cboFiltrar.setAdapter(SpinerAdaptador);
