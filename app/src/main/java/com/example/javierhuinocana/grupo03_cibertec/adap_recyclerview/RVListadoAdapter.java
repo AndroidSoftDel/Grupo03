@@ -22,6 +22,7 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
     private ArrayList<ListaOrdenes> mLstListaOrdenes, mLstListaOrdenesFilter;
     private RVListadoAdapterCallBack mRVListadoAdapterCallBack;
 
+
     public interface RVListadoAdapterCallBack {
         void onListadoClick(ListaOrdenes listaOrdenes, int position);
     }
@@ -34,7 +35,6 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
         mLstListaOrdenesFilter.addAll(mLstListaOrdenes);
     }
 
-
     @Override
     public RVListadoAdapterViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         return new RVListadoAdapterViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_orden, viewGroup, false));
@@ -43,7 +43,6 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
     @Override
     public void onBindViewHolder(RVListadoAdapterViewHolder rvListadoAdapterViewHolder, int i) {
         ListaOrdenes listaOrdenes = mLstListaOrdenesFilter.get(i);
-
         rvListadoAdapterViewHolder.itemView.setTag(i);
         rvListadoAdapterViewHolder.itemView.setOnClickListener(itemViewOnClickListener);
         rvListadoAdapterViewHolder.tvOrden.setText(listaOrdenes.getOrden());
@@ -71,7 +70,7 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
     }
 
     static class RVListadoAdapterViewHolder extends RecyclerView.ViewHolder {
-        TextView tvOrden, tvTelefono, tvNegocio, tvActividad,tvIdOrden;
+        TextView tvOrden, tvTelefono, tvNegocio, tvActividad, tvIdOrden;
 
         public RVListadoAdapterViewHolder(View itemView) {
             super(itemView);
