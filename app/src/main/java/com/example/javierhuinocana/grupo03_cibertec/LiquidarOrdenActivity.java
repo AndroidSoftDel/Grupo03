@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
+
 /**
  * Created by Javier Huiñocana on 08/09/2015.
  */
@@ -14,6 +16,7 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
 
     EditText txtOrden, txtTelefono, txtAtendio, txtDni, txtObservaciones;
     Button btnAddMat, btnLiquidar;
+    ListaOrdenes listaOrdenes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,12 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
         /*ASOCIAMOS EVENTOS CLICK*/
         btnAddMat.setOnClickListener(btnAddMatOnClickListener);
         btnLiquidar.setOnClickListener(btnLiquidarOnClickListener);
+
+        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(ListaOrdenesActivity.ARG_ORDEN)) {
+            listaOrdenes = getIntent().getParcelableExtra(ListaOrdenesActivity.ARG_ORDEN);
+            txtOrden.setText(listaOrdenes.getOrden());
+            txtTelefono.setText(listaOrdenes.getTelefono());
+        }
     }
 
     View.OnClickListener btnAddMatOnClickListener = new View.OnClickListener() {

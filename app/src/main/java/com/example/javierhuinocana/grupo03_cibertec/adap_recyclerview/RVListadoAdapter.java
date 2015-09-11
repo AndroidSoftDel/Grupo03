@@ -71,10 +71,11 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
     }
 
     static class RVListadoAdapterViewHolder extends RecyclerView.ViewHolder {
-        TextView tvOrden, tvTelefono, tvNegocio, tvActividad;
+        TextView tvOrden, tvTelefono, tvNegocio, tvActividad,tvIdOrden;
 
         public RVListadoAdapterViewHolder(View itemView) {
             super(itemView);
+
             tvOrden = (TextView) itemView.findViewById(R.id.tvOrden);
             tvTelefono = (TextView) itemView.findViewById(R.id.tvTelefono);
             tvNegocio = (TextView) itemView.findViewById(R.id.tvNegocio);

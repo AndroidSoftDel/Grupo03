@@ -28,7 +28,8 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
     private RecyclerView rvPrincipal;
     private RVListadoAdapter rvListadoAdapter;
     private DataBaseHelper dataBaseHelper;
-
+    public final static String ARG_ORDEN = "orden", ARG_POSITION = "position";
+    private final static int REQUEST_CODE_EDITAR = 2;
     /*CODIGO QUE SE BORRARA*/
     Button btnVerDetalle;
 
@@ -109,6 +110,11 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
 
     @Override
     public void onListadoClick(ListaOrdenes listaOrdenes, int position) {
-
+        Intent intent = new Intent(ListaOrdenesActivity.this,DetalleOrdenesActivity.class);
+        intent.putExtra(ARG_ORDEN, listaOrdenes);
+        intent.putExtra(ARG_POSITION, position);
+        startActivity(intent);
+        //startActivityForResult(intent, REQUEST_CODE_EDITAR);
+        Toast.makeText(ListaOrdenesActivity.this, listaOrdenes.getOrden(), Toast.LENGTH_SHORT).show();
     }
 }

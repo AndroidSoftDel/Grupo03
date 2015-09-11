@@ -24,12 +24,14 @@ public class ListadoDAO {
                 do {
                     ListaOrdenes listaOrdenes = new ListaOrdenes();
                     listaOrdenes.setIdOrden(cursor.isNull(cursor.getColumnIndex("IdOrden")) ? 0 : cursor.getInt(cursor.getColumnIndex("IdOrden")));
+                    listaOrdenes.setZonal(cursor.isNull(cursor.getColumnIndex("Zonal")) ? "" : cursor.getString(cursor.getColumnIndex("Zonal")));
                     listaOrdenes.setOrden(cursor.isNull(cursor.getColumnIndex("Orden")) ? "" : cursor.getString(cursor.getColumnIndex("Orden")));
                     listaOrdenes.setTelefono(cursor.isNull(cursor.getColumnIndex("Telefono")) ? "" : cursor.getString(cursor.getColumnIndex("Telefono")));
                     listaOrdenes.setCliente(cursor.isNull(cursor.getColumnIndex("Cliente")) ? "" : cursor.getString(cursor.getColumnIndex("Cliente")));
                     listaOrdenes.setDireccion(cursor.isNull(cursor.getColumnIndex("Direccion")) ? "" : cursor.getString(cursor.getColumnIndex("Direccion")));
                     listaOrdenes.setNegocio(cursor.isNull(cursor.getColumnIndex("Negocio")) ? "" : cursor.getString(cursor.getColumnIndex("Negocio")));
                     listaOrdenes.setActividad(cursor.isNull(cursor.getColumnIndex("Actividad")) ? "" : cursor.getString(cursor.getColumnIndex("Actividad")));
+                    listaOrdenes.setClienteAtendio(cursor.isNull(cursor.getColumnIndex("ClienteAtendio")) ? "" : cursor.getString(cursor.getColumnIndex("ClienteAtendio")));
                     listaOrdenes.setDniCliente(cursor.isNull(cursor.getColumnIndex("DniCliente")) ? "" : cursor.getString(cursor.getColumnIndex("DniCliente")));
                     listaOrdenes.setCoordenada(cursor.isNull(cursor.getColumnIndex("Coordenada")) ? "" : cursor.getString(cursor.getColumnIndex("Coordenada")));
                     listaOrdenes.setFecha_Registro(cursor.isNull(cursor.getColumnIndex("Fecha_Registro")) ? "" : cursor.getString(cursor.getColumnIndex("Fecha_Registro")));
@@ -54,6 +56,7 @@ public class ListadoDAO {
         long udp = 0;
         try {
             ContentValues cv = new ContentValues();
+            cv.put("ClienteAtendio", listaOrdenes.getDniCliente());
             cv.put("DniCliente", listaOrdenes.getDniCliente());
             cv.put("Fecha_Liquidacion", listaOrdenes.getFecha_Liquidacion());
             cv.put("Estado", listaOrdenes.getEstado());

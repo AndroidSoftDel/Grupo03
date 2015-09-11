@@ -8,12 +8,14 @@ import android.os.Parcelable;
  */
 public class ListaOrdenes implements Parcelable {
     private int IdOrden;
+    private String Zonal;
     private String Orden;
     private String Telefono;
     private String Cliente;
     private String Direccion;
     private String Negocio;
     private String Actividad;
+    private String ClienteAtendio;
     private String DniCliente;
     private String Coordenada;
     private String Fecha_Registro;
@@ -30,6 +32,14 @@ public class ListaOrdenes implements Parcelable {
 
     public void setIdOrden(int idOrden) {
         IdOrden = idOrden;
+    }
+
+    public String getZonal() {
+        return Zonal;
+    }
+
+    public void setZonal(String zonal) {
+        Zonal = zonal;
     }
 
     public String getOrden() {
@@ -78,6 +88,14 @@ public class ListaOrdenes implements Parcelable {
 
     public void setActividad(String actividad) {
         Actividad = actividad;
+    }
+
+    public String getClienteAtendio() {
+        return ClienteAtendio;
+    }
+
+    public void setClienteAtendio(String clienteAtendio) {
+        ClienteAtendio = clienteAtendio;
     }
 
     public String getDniCliente() {
@@ -130,12 +148,14 @@ public class ListaOrdenes implements Parcelable {
 
     protected ListaOrdenes(Parcel in) {
         IdOrden = in.readInt();
+        Zonal = in.readString();
         Orden = in.readString();
         Telefono = in.readString();
         Cliente = in.readString();
         Direccion = in.readString();
         Negocio = in.readString();
         Actividad = in.readString();
+        ClienteAtendio = in.readString();
         DniCliente = in.readString();
         Coordenada = in.readString();
         Fecha_Registro = in.readString();
@@ -152,12 +172,14 @@ public class ListaOrdenes implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(IdOrden);
+        dest.writeString(Zonal);
         dest.writeString(Orden);
         dest.writeString(Telefono);
         dest.writeString(Cliente);
         dest.writeString(Direccion);
         dest.writeString(Negocio);
         dest.writeString(Actividad);
+        dest.writeString(ClienteAtendio);
         dest.writeString(DniCliente);
         dest.writeString(Coordenada);
         dest.writeString(Fecha_Registro);

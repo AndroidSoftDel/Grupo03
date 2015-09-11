@@ -7,20 +7,23 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
+
 /**
  * Created by Javier Huiñocana on 08/09/2015.
  */
 public class DetalleOrdenesActivity extends AppCompatActivity {
 
-    EditText txtZonal,txtNegocio,txtActividad,txtOrden,txtTelefono,txtCliente,txtDireccion;
+    EditText txtZonal,txtFecha_Registro,txtNegocio,txtActividad,txtOrden,txtTelefono,txtCliente,txtDireccion;
     Button btnVerMapa,btnLiquidar,btnRechazar;
-
+    ListaOrdenes listaOrdenes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.detalle_orden);
 
         txtZonal=(EditText)findViewById(R.id.txtZonal_Detalle);
+        txtFecha_Registro=(EditText)findViewById(R.id.txtFecha_Registro_Detalle);
         txtNegocio=(EditText)findViewById(R.id.txtNegocio_Detalle);
         txtActividad=(EditText)findViewById(R.id.txtActividad_Detalle);
         txtOrden=(EditText)findViewById(R.id.txtOrden_Detalle);
@@ -31,15 +34,25 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
         btnLiquidar=(Button)findViewById(R.id.btnLiquidar_Detalle);
         btnRechazar=(Button)findViewById(R.id.btnRechazar_Detalle);
 
-
+        if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(ListaOrdenesActivity.ARG_ORDEN)) {
+            listaOrdenes = getIntent().getParcelableExtra(ListaOrdenesActivity.ARG_ORDEN);
+            txtZonal.setText(listaOrdenes.getZonal());
+            txtNegocio.setText(listaOrdenes.getNegocio());
+            txtActividad.setText(listaOrdenes.getActividad());
+            txtOrden.setText(listaOrdenes.getOrden());
+            txtTelefono.setText(listaOrdenes.getTelefono());
+            txtCliente.setText(listaOrdenes.getCliente());
+            txtDireccion.setText(listaOrdenes.getDireccion());
+            txtFecha_Registro.setText(listaOrdenes.getFecha_Registro());
+        }
         /*CAMPOS QUE TIENEN QUE SER LLENADOS DE LA BASE DE DATOS*/
-        txtZonal.setText("LIM");
+        /*txtZonal.setText("LIM");
         txtNegocio.setText("STB");
         txtActividad.setText("Actividad");
         txtOrden.setText("BAR0512515");
         txtTelefono.setText("5215248");
         txtCliente.setText("Luis Fajardo Lopez");
-        txtDireccion.setText("Carmen de la Legua");
+        txtDireccion.setText("Carmen de la Legua");*/
 
 
         btnVerMapa.setOnClickListener(btnVerMapaOnClickListener);
@@ -47,7 +60,7 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
         btnRechazar.setOnClickListener(btnRechazarOnClickListener);
 
         /*IMPEDIMOS QUE SE MODIFIQUEN LOS VALORES*/
-        txtZonal.setKeyListener(null);
+        txtFecha_Registro.setKeyListener(null);
         txtNegocio.setKeyListener(null);
         txtActividad.setKeyListener(null);
         txtOrden.setKeyListener(null);
@@ -66,6 +79,7 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(DetalleOrdenesActivity.this,LiquidarOrdenActivity.class);
+            intent.putExtra(ListaOrdenesActivity.ARG_ORDEN,listaOrdenes);
             startActivity(intent);
         }
     };
