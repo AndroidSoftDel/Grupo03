@@ -32,6 +32,10 @@
             android:name=".RechazarOrdenActivity"
             android:label="Rechazar Orden">
         </activity>
+        <activity
+            android:name=".AddMaterialLiquidarActivity"
+            android:label="Agregar Material">
+        </activity>
     </application>
 
 </manifest>

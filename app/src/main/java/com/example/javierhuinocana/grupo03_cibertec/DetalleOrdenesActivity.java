@@ -45,14 +45,6 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
             txtDireccion.setText(listaOrdenes.getDireccion());
             txtFecha_Registro.setText(listaOrdenes.getFecha_Registro());
         }
-        /*CAMPOS QUE TIENEN QUE SER LLENADOS DE LA BASE DE DATOS*/
-        /*txtZonal.setText("LIM");
-        txtNegocio.setText("STB");
-        txtActividad.setText("Actividad");
-        txtOrden.setText("BAR0512515");
-        txtTelefono.setText("5215248");
-        txtCliente.setText("Luis Fajardo Lopez");
-        txtDireccion.setText("Carmen de la Legua");*/
 
 
         btnVerMapa.setOnClickListener(btnVerMapaOnClickListener);

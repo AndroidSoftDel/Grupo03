@@ -30,21 +30,21 @@
                 ></Spinner>
 
             <Button
-                android:id="@+id/btnLiquidar"
+                android:id="@+id/btnLiquidar_ListaOrdenes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="L" />
 
             <Button
-                android:id="@+id/btnRechazar"
+                android:id="@+id/btnRechazar_ListaOrdenes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="R" />
 
             <Button
-                android:id="@+id/btnMapa"
+                android:id="@+id/btnMapa_ListaOrdenes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -57,30 +57,11 @@
             android:layout_weight="1"
             android:orientation="horizontal">
 
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvPrincipal"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"/>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnVerDetalle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:text="Ver Detalle Orden" />
-        </LinearLayout>
-
     </LinearLayout>
-
-
-
-
 
 </LinearLayout>

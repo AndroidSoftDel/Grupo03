@@ -1,5 +1,6 @@
 package com.example.javierhuinocana.grupo03_cibertec;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +18,8 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
     EditText txtOrden, txtTelefono, txtAtendio, txtDni, txtObservaciones;
     Button btnAddMat, btnLiquidar;
     ListaOrdenes listaOrdenes;
+
+    public final static int CODE_Resul=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +56,16 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
     View.OnClickListener btnAddMatOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(LiquidarOrdenActivity.this, "Se llamara una nueva Actividad", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(LiquidarOrdenActivity.this, "Se llamara una nueva Actividad", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LiquidarOrdenActivity.this,AddMaterialLiquidarActivity.class);
+            startActivityForResult(intent,CODE_Resul);
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     View.OnClickListener btnLiquidarOnClickListener = new View.OnClickListener() {
         @Override

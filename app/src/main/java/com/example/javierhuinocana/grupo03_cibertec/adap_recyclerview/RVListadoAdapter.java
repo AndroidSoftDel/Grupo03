@@ -19,7 +19,7 @@ import java.util.ArrayList;
  */
 public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVListadoAdapterViewHolder> implements Filterable {
 
-    private ArrayList<ListaOrdenes> mLstListaOrdenes, mLstListaOrdenesFilter;
+    private ArrayList<ListaOrdenes> mLstListaOrdenesFilter;
     private RVListadoAdapterCallBack mRVListadoAdapterCallBack;
 
 
@@ -27,12 +27,12 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
         void onListadoClick(ListaOrdenes listaOrdenes, int position);
     }
 
-    public RVListadoAdapter(RVListadoAdapterCallBack mRVListadoAdapterCallBack) {
+    public RVListadoAdapter(RVListadoAdapterCallBack mRVListadoAdapterCallBack,ArrayList<ListaOrdenes> miLista) {
         this.mRVListadoAdapterCallBack = mRVListadoAdapterCallBack;
         mLstListaOrdenesFilter = new ArrayList<>();
-        mLstListaOrdenes = new ArrayList<>();
-        mLstListaOrdenes.addAll(new ListadoDAO().listOrdenes());
-        mLstListaOrdenesFilter.addAll(mLstListaOrdenes);
+        //mLstListaOrdenes = new ArrayList<>();
+        //mLstListaOrdenes.addAll(new ListadoDAO().listOrdenes());
+        mLstListaOrdenesFilter.addAll(miLista);
     }
 
     @Override
