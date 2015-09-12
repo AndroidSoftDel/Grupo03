@@ -58,7 +58,8 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
         public void onClick(View v) {
             //Toast.makeText(LiquidarOrdenActivity.this, "Se llamara una nueva Actividad", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(LiquidarOrdenActivity.this,AddMaterialLiquidarActivity.class);
-            startActivityForResult(intent,CODE_Resul);
+            //startActivityForResult(intent,CODE_Resul);
+            startActivity(intent);
         }
     };
 
