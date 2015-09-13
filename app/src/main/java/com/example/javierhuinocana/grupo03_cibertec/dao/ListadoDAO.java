@@ -60,6 +60,7 @@ public class ListadoDAO {
             cv.put("DniCliente", listaOrdenes.getDniCliente());
             cv.put("Fecha_Liquidacion", listaOrdenes.getFecha_Liquidacion());
             cv.put("Estado", listaOrdenes.getEstado());
+            cv.put("Observaciones", listaOrdenes.getObservaciones());
 
             DataBaseHelper.myDataBase.beginTransaction();
             udp = DataBaseHelper.myDataBase.update("ListaOrdenes", cv, "IdOrden = ?", new String[]{String.valueOf(listaOrdenes.getIdOrden())});
