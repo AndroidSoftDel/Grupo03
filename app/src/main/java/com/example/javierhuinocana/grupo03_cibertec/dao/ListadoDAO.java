@@ -56,14 +56,14 @@ public class ListadoDAO {
         long udp = 0;
         try {
             ContentValues cv = new ContentValues();
-            cv.put("ClienteAtendio", listaOrdenes.getDniCliente());
+            cv.put("ClienteAtendio", listaOrdenes.getClienteAtendio());
             cv.put("DniCliente", listaOrdenes.getDniCliente());
             cv.put("Fecha_Liquidacion", listaOrdenes.getFecha_Liquidacion());
             cv.put("Estado", listaOrdenes.getEstado());
             cv.put("Observaciones", listaOrdenes.getObservaciones());
 
             DataBaseHelper.myDataBase.beginTransaction();
-            udp = DataBaseHelper.myDataBase.update("ListaOrdenes", cv, "IdOrden = ?", new String[]{String.valueOf(listaOrdenes.getIdOrden())});
+            udp = DataBaseHelper.myDataBase.update("ListaOrdenes", cv, "Orden = ?", new String[]{String.valueOf(listaOrdenes.getOrden())});
             DataBaseHelper.myDataBase.setTransactionSuccessful();
         } catch (Exception ex) {
             ex.printStackTrace();
