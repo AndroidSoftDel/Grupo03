@@ -157,24 +157,27 @@
 
         <Button
             android:id="@+id/btnVerMapa_Detalle"
-            android:layout_width="0dp"
+        android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ver Mapa" />
+            android:text="Ver Mapa"
+            style="@style/BtnSuccess"/>
 
         <Button
             android:id="@+id/btnLiquidar_Detalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Liquidar" />
+            android:text="Liquidar"
+            style="@style/BtnPrimary"/>
 
         <Button
             android:id="@+id/btnRechazar_Detalle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Rechazar" />
+            android:text="Rechazar"
+            style="@style/BtnWarning"/>
 
     </LinearLayout>
 </LinearLayout>

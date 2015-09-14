@@ -135,7 +135,8 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
     View.OnClickListener btnMapaOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(ListaOrdenesActivity.this, "Se vera mapa", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(ListaOrdenesActivity.this,Mapa_Ordenes.class);
+            startActivity(intent);
         }
     };
 

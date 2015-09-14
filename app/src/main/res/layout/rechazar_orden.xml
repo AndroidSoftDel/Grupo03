@@ -116,14 +116,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/rechazar_orden_rechazar" />
+            android:text="@string/rechazar_orden_rechazar"
+            style="@style/BtnWarning"/>
 
         <Button
             android:id="@+id/btnCancelar_Rechazar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/liquidar_orden_cancelar" />
+            android:text="@string/liquidar_orden_cancelar"
+            style="@style/BtnDanger"/>
     </LinearLayout>
 
 </LinearLayout>

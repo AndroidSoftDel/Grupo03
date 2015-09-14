@@ -27,8 +27,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this,"Bienvenido",Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(MainActivity.this,ListaOrdenesActivity.class);
-                Intent intent = new Intent(MainActivity.this,Mapa_Ordenes.class);
+                Intent intent = new Intent(MainActivity.this,ListaOrdenesActivity.class);
                 startActivity(intent);
                 finish();
             }
