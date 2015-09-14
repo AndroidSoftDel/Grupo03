@@ -8,6 +8,11 @@
         android:title="@string/liquidar_orden_materiales"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_VerMapa_Lista"
+        android:title="@string/verMapa"
+        app:showAsAction="always" />
+
     <!--<item-->
     <!--android:id="@+id/action_settings"-->
     <!--android:orderInCategory="100"-->

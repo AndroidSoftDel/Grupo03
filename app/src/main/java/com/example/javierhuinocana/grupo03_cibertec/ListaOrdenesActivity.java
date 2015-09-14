@@ -1,12 +1,18 @@
 package com.example.javierhuinocana.grupo03_cibertec;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +31,6 @@ import java.util.ArrayList;
 public class ListaOrdenesActivity extends AppCompatActivity implements RVListadoAdapter.RVListadoAdapterCallBack {
 
     Spinner cboFiltrar;
-    Button btnMapa;
     private SpinerAdapter SpinerAdaptador;
     private RecyclerView rvPrincipal;
     private RVListadoAdapter rvListadoAdapter;
@@ -33,9 +38,12 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
 
     public final static String ARG_ORDEN = "orden", ARG_POSITION = "position";
     private final static int REQUEST_CODE_EDITAR = 2;
-
     private ArrayList<ListaOrdenes> ListaArray_Pendientes, ListaArray_Liquidadas, ListaArray_Rechazadas;
 
+    MenuItem menuVerMapa;
+
+    private DrawerLayout dlmenu;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +51,6 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         setContentView(R.layout.lista_ordenes);
 
         cboFiltrar = (Spinner) findViewById(R.id.cboFiltrar);
-        btnMapa = (Button) findViewById(R.id.btnMapa_ListaOrdenes);
 
         /*CREAMOS LOS ITEM PARA EL SPINER*/
         ArrayList<String> ArrayFiltro = new ArrayList<>();
@@ -53,9 +60,6 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         /*ASOCIAMOS EL ADAPTADOR AL SPINER*/
         SpinerAdaptador = new SpinerAdapter(ListaOrdenesActivity.this, ArrayFiltro);
         cboFiltrar.setAdapter(SpinerAdaptador);
-
-        /*ASOCIAMOS EVENTOS*/
-        btnMapa.setOnClickListener(btnMapaOnClickListener);
 
         /*CREAMOS Y/O COPIAMOS BD AL CELULAR*/
         try {
@@ -71,9 +75,9 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         arrayListTemporal = new ArrayList<>();
         arrayListTemporal.addAll(new ListadoDAO().listOrdenes());
 
-        ListaArray_Pendientes= new ArrayList<ListaOrdenes>();
-        ListaArray_Liquidadas= new ArrayList<ListaOrdenes>();
-        ListaArray_Rechazadas= new ArrayList<ListaOrdenes>();
+        ListaArray_Pendientes = new ArrayList<ListaOrdenes>();
+        ListaArray_Liquidadas = new ArrayList<ListaOrdenes>();
+        ListaArray_Rechazadas = new ArrayList<ListaOrdenes>();
 
         for (int i = 0; i < arrayListTemporal.size(); i++) {
             switch (arrayListTemporal.get(i).getEstado()) {
@@ -95,31 +99,100 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         rvPrincipal.setHasFixedSize(true);
         rvPrincipal.setLayoutManager(new LinearLayoutManager(ListaOrdenesActivity.this));
 
-        rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this,ListaArray_Pendientes);
+        rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this, ListaArray_Pendientes);
         rvPrincipal.setAdapter(rvListadoAdapter);
 
         cboFiltrar.setOnItemSelectedListener(cboFiltrarOnItemSelectedListener);
+
+        dlmenu = (DrawerLayout) findViewById(R.id.MenuDesplegable_ListaOrdenes);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(ListaOrdenesActivity.this, dlmenu, R.string.app_name, R.string.app_name) {
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                invalidateOptionsMenu();
+                Toast.makeText(ListaOrdenesActivity.this,"Closed",Toast.LENGTH_SHORT).show();
+                rvPrincipal.setEnabled(true);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+                Toast.makeText(ListaOrdenesActivity.this,"Opened",Toast.LENGTH_SHORT).show();
+                rvPrincipal.setEnabled(false);
+            }
+        };
+
+        dlmenu.setDrawerListener(actionBarDrawerToggle);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+
+        //rvPrincipal.setEnabled(false);
+        ((LinearLayout)findViewById(R.id.LayoutPrincipal_Lista)).setEnabled(false);
     }
 
-    AdapterView.OnItemSelectedListener cboFiltrarOnItemSelectedListener = new AdapterView.OnItemSelectedListener(){
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        actionBarDrawerToggle.onConfigurationChanged(newConfig);
+    }
+
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        menu.getItem(0).setVisible(false);
+        menuVerMapa = menu.getItem(1);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_VerMapa_Lista) {
+            Intent intent = new Intent(ListaOrdenesActivity.this, Mapa_Ordenes.class);
+            startActivity(intent);
+            return true;
+        }else if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
+    AdapterView.OnItemSelectedListener cboFiltrarOnItemSelectedListener = new AdapterView.OnItemSelectedListener() {
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            switch (position){
+            switch (position) {
                 case 0:
                     /*PENDIENTES*/
-                    rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this,ListaArray_Pendientes);
+                    rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this, ListaArray_Pendientes);
                     rvPrincipal.setAdapter(rvListadoAdapter);
 
                     break;
                 case 1:
                     /*LIQUIDADAS*/
-                    rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this,ListaArray_Liquidadas);
+                    rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this, ListaArray_Liquidadas);
                     rvPrincipal.setAdapter(rvListadoAdapter);
                     break;
                 case 2:
                     /*RECHAZADAS*/
-                    rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this,ListaArray_Rechazadas);
+                    rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this, ListaArray_Rechazadas);
                     rvPrincipal.setAdapter(rvListadoAdapter);
 
                     break;
@@ -129,14 +202,6 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
 
-        }
-    };
-
-    View.OnClickListener btnMapaOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(ListaOrdenesActivity.this,Mapa_Ordenes.class);
-            startActivity(intent);
         }
     };
 
