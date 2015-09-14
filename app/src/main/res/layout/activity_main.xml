@@ -41,6 +41,5 @@
         android:layout_below="@id/txtPassword"
         android:layout_marginTop="20dp"
         android:text="INGRESAR"
-
-        />
+        style="@style/BtnPrimary"        />
 </RelativeLayout>

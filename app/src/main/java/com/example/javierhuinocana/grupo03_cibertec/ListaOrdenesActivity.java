@@ -25,7 +25,7 @@ import java.util.ArrayList;
 public class ListaOrdenesActivity extends AppCompatActivity implements RVListadoAdapter.RVListadoAdapterCallBack {
 
     Spinner cboFiltrar;
-    Button btnLiquidar, btnRechazar, btnMapa;
+    Button btnMapa;
     private SpinerAdapter SpinerAdaptador;
     private RecyclerView rvPrincipal;
     private RVListadoAdapter rvListadoAdapter;
@@ -43,8 +43,6 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         setContentView(R.layout.lista_ordenes);
 
         cboFiltrar = (Spinner) findViewById(R.id.cboFiltrar);
-        btnLiquidar = (Button) findViewById(R.id.btnLiquidar_ListaOrdenes);
-        btnRechazar = (Button) findViewById(R.id.btnRechazar_ListaOrdenes);
         btnMapa = (Button) findViewById(R.id.btnMapa_ListaOrdenes);
 
         /*CREAMOS LOS ITEM PARA EL SPINER*/
@@ -57,8 +55,6 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         cboFiltrar.setAdapter(SpinerAdaptador);
 
         /*ASOCIAMOS EVENTOS*/
-        btnLiquidar.setOnClickListener(btnLiquidarOnClickListener);
-        btnRechazar.setOnClickListener(btnRechazarOnClickListener);
         btnMapa.setOnClickListener(btnMapaOnClickListener);
 
         /*CREAMOS Y/O COPIAMOS BD AL CELULAR*/
@@ -115,29 +111,16 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
                     rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this,ListaArray_Pendientes);
                     rvPrincipal.setAdapter(rvListadoAdapter);
 
-                    /*ACTIVAMOS CONTROLES*/
-                    btnLiquidar.setEnabled(true);
-                    btnRechazar.setEnabled(true);
                     break;
                 case 1:
                     /*LIQUIDADAS*/
                     rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this,ListaArray_Liquidadas);
                     rvPrincipal.setAdapter(rvListadoAdapter);
-
-                    /*DESACTIVAMOS CONTROLES*/
-                    btnLiquidar.setEnabled(false);
-                    btnRechazar.setEnabled(false);
-
-
                     break;
                 case 2:
                     /*RECHAZADAS*/
                     rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this,ListaArray_Rechazadas);
                     rvPrincipal.setAdapter(rvListadoAdapter);
-
-                    /*DESACTIVAMOS CONTROLES*/
-                    btnLiquidar.setEnabled(false);
-                    btnRechazar.setEnabled(false);
 
                     break;
             }
@@ -149,19 +132,6 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         }
     };
 
-    View.OnClickListener btnLiquidarOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(ListaOrdenesActivity.this, "Se liquidara", Toast.LENGTH_SHORT).show();
-        }
-    };
-
-    View.OnClickListener btnRechazarOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(ListaOrdenesActivity.this, "Se rechazara", Toast.LENGTH_SHORT).show();
-        }
-    };
     View.OnClickListener btnMapaOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

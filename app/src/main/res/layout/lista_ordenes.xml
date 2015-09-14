@@ -29,26 +29,26 @@
 
                 ></Spinner>
 
-            <Button
-                android:id="@+id/btnLiquidar_ListaOrdenes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="L" />
+            <!--<Button-->
+                <!--android:id="@+id/btnLiquidar_ListaOrdenes"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="L" />-->
 
-            <Button
-                android:id="@+id/btnRechazar_ListaOrdenes"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="R" />
+            <!--<Button-->
+                <!--android:id="@+id/btnRechazar_ListaOrdenes"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="R" />-->
 
             <Button
                 android:id="@+id/btnMapa_ListaOrdenes"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="M" />
+                android:text="M"/>
         </LinearLayout>
 
         <LinearLayout
