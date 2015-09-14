@@ -2,10 +2,14 @@ package com.example.javierhuinocana.grupo03_cibertec;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
@@ -16,52 +20,40 @@ import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
 public class LiquidarOrdenActivity extends AppCompatActivity {
 
     EditText txtOrden, txtTelefono, txtAtendio, txtDni, txtObservaciones;
-    Button btnAddMat, btnLiquidar;
     ListaOrdenes listaOrdenes;
+    //agregar nueva repo
+    private Button btnLiquidarOrden_Liquidar, btnCancelar_Liquidar;
+    private TextInputLayout tilNombre_Liquidar, tilDni_Liquidar, tilObservaciones_Liquidar;
+    TextView tvOrden_Liquidar, tvTelefono_Liquidar;
+    ////
 
-    public final static int CODE_Resul=1;
+
+    public final static int CODE_Resul = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.liquidar_orden);
 
-        txtOrden = (EditText) findViewById(R.id.txtOrden_Liquidar);
-        txtTelefono = (EditText) findViewById(R.id.txtTelefono_Liquidar);
-        txtAtendio = (EditText) findViewById(R.id.txtAtendio_Liquidar);
-        txtDni = (EditText) findViewById(R.id.txtDNI_Liquidar);
-        txtObservaciones = (EditText) findViewById(R.id.txtObservaciones_Liquidar);
+        //agregar nueva repo
+        btnLiquidarOrden_Liquidar = (Button)findViewById(R.id.btnLiquidarOrden_Liquidar);
+        btnCancelar_Liquidar = (Button)findViewById(R.id.btnCancelar_Liquidar);
+        tvOrden_Liquidar = (TextView)findViewById(R.id.tvOrden_Liquidar);
+        tvTelefono_Liquidar = (TextView)findViewById(R.id.tvTelefono_Liquidar);
 
-        btnAddMat = (Button) findViewById(R.id.btnAddMateriales_Liquidar);
-        btnLiquidar = (Button) findViewById(R.id.btnLiquidarOrden_Liquidar);
+        btnLiquidarOrden_Liquidar.setOnClickListener(btnLiquidarOrden_LiquidarOnClickListener);
+        btnCancelar_Liquidar.setOnClickListener(btnCancelar_LiquidarOnClickListener);
 
-        /*PARA CANCELAR LA EDICION EN LOS CONTROLES*/
-        txtOrden.setKeyListener(null);
-        txtTelefono.setKeyListener(null);
-
-        /*ENVIAMOS FOCO*/
-        txtAtendio.requestFocus();
-
-        /*ASOCIAMOS EVENTOS CLICK*/
-        btnAddMat.setOnClickListener(btnAddMatOnClickListener);
-        btnLiquidar.setOnClickListener(btnLiquidarOnClickListener);
+        tilNombre_Liquidar = (TextInputLayout)findViewById(R.id.tilNombre_Liquidar);
+        tilDni_Liquidar = (TextInputLayout)findViewById(R.id.tilDni_Liquidar);
+        tilObservaciones_Liquidar = (TextInputLayout)findViewById(R.id.tilObservaciones_Liquidar);
 
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(ListaOrdenesActivity.ARG_ORDEN)) {
             listaOrdenes = getIntent().getParcelableExtra(ListaOrdenesActivity.ARG_ORDEN);
-            txtOrden.setText(listaOrdenes.getOrden());
-            txtTelefono.setText(listaOrdenes.getTelefono());
+            tvOrden_Liquidar.setText(listaOrdenes.getOrden());
+            tvTelefono_Liquidar.setText(listaOrdenes.getTelefono());
         }
     }
-
-    View.OnClickListener btnAddMatOnClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            //Toast.makeText(LiquidarOrdenActivity.this, "Se llamara una nueva Actividad", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(LiquidarOrdenActivity.this,AddMaterialLiquidarActivity.class);
-            //startActivityForResult(intent,CODE_Resul);
-            startActivity(intent);
-        }
-    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -72,6 +64,79 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Toast.makeText(LiquidarOrdenActivity.this, "Se Liquidó Orden", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+    };
+
+
+    //agregar nuevo repo
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_agregar_materiales:
+                Toast.makeText(LiquidarOrdenActivity.this, item.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LiquidarOrdenActivity.this, AddMaterialLiquidarActivity.class);
+                //startActivityForResult(intent,CODE_Resul);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    View.OnClickListener btnLiquidarOrden_LiquidarOnClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            boolean isCorrect = true;
+           // Persona persona = new Persona();
+
+            tilNombre_Liquidar.setErrorEnabled(false);
+            tilDni_Liquidar.setErrorEnabled(false);
+            tilObservaciones_Liquidar.setErrorEnabled(false);
+
+            if (tilNombre_Liquidar.getEditText().getText().toString().trim().length() <= 0) {
+                tilNombre_Liquidar.setError("Ingrese un nombre de cliente");
+                tilNombre_Liquidar.setErrorEnabled(true);
+                isCorrect = false;
+            } //else
+                //persona.setNombre(tilSecondNombre.getEditText().getText().toString().trim());
+
+            if (tilDni_Liquidar.getEditText().getText().toString().trim().length() != 8) {
+                tilDni_Liquidar.setError("Ingrese un DNI válido");
+                tilDni_Liquidar.setErrorEnabled(true);
+                isCorrect = false;
+            } //else
+                //    persona.setEdad(Integer.parseInt(tilSecondEdad.getEditText().getText().toString().trim()));
+
+            if (tilObservaciones_Liquidar.getEditText().getText().toString().trim().length() <= 0) {
+                tilObservaciones_Liquidar.setError("Ingrese las observaciones");
+                tilObservaciones_Liquidar.setErrorEnabled(true);
+                isCorrect = false;
+            } //else
+            // persona.setDni(tilSecondDNI.getEditText().getText().toString().trim());
+            Toast.makeText(LiquidarOrdenActivity.this, "Orden liquidada", Toast.LENGTH_SHORT).show();
+           /* if (isCorrect) {
+                Intent intent = new Intent();
+                intent.putExtra(MainActivity.ARG_PERSONA, persona);
+                intent.putExtra(MainActivity.ARG_POSITION, position);
+                setResult(RESULT_OK, intent);
+                finish();
+            }*/
+            finish();
+        }
+    };
+    View.OnClickListener btnCancelar_LiquidarOnClickListener = new View.OnClickListener() {
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(LiquidarOrdenActivity.this, "Liquidacion cancelada", Toast.LENGTH_SHORT).show();
             finish();
         }
     };
