@@ -79,6 +79,7 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(DetalleOrdenesActivity.this,RechazarOrdenActivity.class);
+            intent.putExtra(ListaOrdenesActivity.ARG_ORDEN,listaOrdenes);
             startActivity(intent);
         }
     };
