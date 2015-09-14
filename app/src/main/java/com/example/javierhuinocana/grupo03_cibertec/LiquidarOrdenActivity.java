@@ -12,7 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.javierhuinocana.grupo03_cibertec.dao.ListadoDAO;
 import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Javier Huiñocana on 08/09/2015.
@@ -95,7 +99,7 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             boolean isCorrect = true;
-           // Persona persona = new Persona();
+            ListaOrdenes listaOrdenes = new ListaOrdenes();
 
             tilNombre_Liquidar.setErrorEnabled(false);
             tilDni_Liquidar.setErrorEnabled(false);
@@ -105,31 +109,43 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
                 tilNombre_Liquidar.setError("Ingrese un nombre de cliente");
                 tilNombre_Liquidar.setErrorEnabled(true);
                 isCorrect = false;
-            } //else
-                //persona.setNombre(tilSecondNombre.getEditText().getText().toString().trim());
+            } else
+                listaOrdenes.setClienteAtendio(tilNombre_Liquidar.getEditText().getText().toString().trim());
 
             if (tilDni_Liquidar.getEditText().getText().toString().trim().length() != 8) {
                 tilDni_Liquidar.setError("Ingrese un DNI válido");
                 tilDni_Liquidar.setErrorEnabled(true);
                 isCorrect = false;
-            } //else
-                //    persona.setEdad(Integer.parseInt(tilSecondEdad.getEditText().getText().toString().trim()));
+            } else
+                listaOrdenes.setDniCliente(tilDni_Liquidar.getEditText().getText().toString().trim());
 
             if (tilObservaciones_Liquidar.getEditText().getText().toString().trim().length() <= 0) {
                 tilObservaciones_Liquidar.setError("Ingrese las observaciones");
                 tilObservaciones_Liquidar.setErrorEnabled(true);
                 isCorrect = false;
-            } //else
-            // persona.setDni(tilSecondDNI.getEditText().getText().toString().trim());
-            Toast.makeText(LiquidarOrdenActivity.this, "Orden liquidada", Toast.LENGTH_SHORT).show();
-           /* if (isCorrect) {
-                Intent intent = new Intent();
-                intent.putExtra(MainActivity.ARG_PERSONA, persona);
-                intent.putExtra(MainActivity.ARG_POSITION, position);
-                setResult(RESULT_OK, intent);
+            } else
+                listaOrdenes.setObservaciones(tilObservaciones_Liquidar.getEditText().getText().toString().trim());
+
+            if (isCorrect) {
+
+                //estado para orden rechazada = 10
+                listaOrdenes.setEstado(ListaOrdenesActivity.estadoOrdenLiquidada);
+                //se obtiene la fecha
+                String fecha = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", java.util.Locale.getDefault()).format(Calendar.getInstance().getTime());
+                listaOrdenes.setFecha_Liquidacion(fecha);
+
+                listaOrdenes.setOrden(tvOrden_Liquidar.getText().toString().trim());
+
+                ListadoDAO listadoDAO = new ListadoDAO();
+                long rc = listadoDAO.updateListado(listaOrdenes);
+                if(rc==1)
+                    Toast.makeText(LiquidarOrdenActivity.this, "Orden liquidada satisfactoriamente", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent();
+                //intent.putExtra(MainActivity.ARG_PERSONA, persona);
+                //intent.putExtra(MainActivity.ARG_POSITION, position);
+                //setResult(RESULT_OK, intent);
                 finish();
-            }*/
-            finish();
+            }
         }
     };
     View.OnClickListener btnCancelar_LiquidarOnClickListener = new View.OnClickListener() {

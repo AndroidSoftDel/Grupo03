@@ -24,6 +24,10 @@ import java.util.ArrayList;
  */
 public class ListaOrdenesActivity extends AppCompatActivity implements RVListadoAdapter.RVListadoAdapterCallBack {
 
+    public static final int estadoOrdenPendiente = 0;
+    public static final int estadoOrdenLiquidada = 1;
+    public static final int estadoOrdenRechazada = 10;
+
     Spinner cboFiltrar;
     Button btnLiquidar, btnRechazar, btnMapa;
     private SpinerAdapter SpinerAdaptador;
