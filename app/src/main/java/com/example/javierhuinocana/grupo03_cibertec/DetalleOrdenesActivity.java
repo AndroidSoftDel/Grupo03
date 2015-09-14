@@ -64,7 +64,8 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
     View.OnClickListener btnVerMapaOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
+            Intent intent = new Intent(DetalleOrdenesActivity.this,Mapa_Ordenes.class);
+            startActivity(intent);
         }
     };
     View.OnClickListener btnLiquidarOnClickListener = new View.OnClickListener() {

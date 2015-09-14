@@ -9,8 +9,13 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/action_VerMapa_Lista"
+        android:title="@string/verMapa"
+        app:showAsAction="always" />
+
+    <!--<item-->
+    <!--android:id="@+id/action_settings"-->
+    <!--android:orderInCategory="100"-->
+    <!--android:title="@string/action_settings"-->
+    <!--app:showAsAction="never" />-->
 </menu>

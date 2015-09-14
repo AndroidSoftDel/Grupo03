@@ -21,4 +21,7 @@
 
     <string name="datos_orden_rechazar">Datos de la orden a rechazar:</string>
     <string name="datos_orden_liquidar">Datos de la orden a liquidar:</string>
+
+    <!--Action Bar: Vista ListaOrdenes-->
+    <string name="verMapa">Ver Mapa</string>
 </resources>
