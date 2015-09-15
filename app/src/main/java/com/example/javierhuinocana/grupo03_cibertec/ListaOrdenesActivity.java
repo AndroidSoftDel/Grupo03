@@ -12,8 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.RecyclerView;
 
@@ -29,7 +31,6 @@ import java.util.ArrayList;
  * Created by Javier Huiñocana on 07/09/2015.
  */
 public class ListaOrdenesActivity extends AppCompatActivity implements RVListadoAdapter.RVListadoAdapterCallBack {
-
     public static final int estadoOrdenPendiente = 0;
     public static final int estadoOrdenLiquidada = 1;
     public static final int estadoOrdenRechazada = 10;
@@ -114,7 +115,7 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
                 invalidateOptionsMenu();
-                Toast.makeText(ListaOrdenesActivity.this,"Closed",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListaOrdenesActivity.this, "Closed", Toast.LENGTH_SHORT).show();
                 rvPrincipal.setEnabled(true);
             }
 
@@ -122,7 +123,7 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 invalidateOptionsMenu();
-                Toast.makeText(ListaOrdenesActivity.this,"Opened",Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListaOrdenesActivity.this, "Opened", Toast.LENGTH_SHORT).show();
                 rvPrincipal.setEnabled(false);
             }
         };
@@ -131,9 +132,10 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        //rvPrincipal.setEnabled(false);
-        ((LinearLayout)findViewById(R.id.LayoutPrincipal_Lista)).setEnabled(false);
     }
+
+    /*VARIABLE PARA IR SUMANDO O DISMINUYENDO CUANTOAS ORDENES TIENEN CHECK*/
+    private int ContadorCheck = 0;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -162,16 +164,48 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         menu.getItem(0).setVisible(false);
         menuVerMapa = menu.getItem(1);
 
+        /*BLOQUEAMOS EL ACTIONBAR: VER MAPA*/
+        menuVerMapa.setEnabled(false);
+
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_VerMapa_Lista) {
+/*
+            View child = rvPrincipal.getChildAt(0);
+            CheckBox texto = (CheckBox) child.findViewById(R.id.chkChequeado);
+            if (texto.isChecked()) {
+                Toast.makeText(ListaOrdenesActivity.this, "TRUE", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ListaOrdenesActivity.this, "FALSE", Toast.LENGTH_SHORT).show();
+            }
+
+            child = rvPrincipal.getChildAt(1);
+            CheckBox texto1 = (CheckBox) child.findViewById(R.id.chkChequeado);
+            if (texto1.isChecked()) {
+                Toast.makeText(ListaOrdenesActivity.this, "TRUE", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(ListaOrdenesActivity.this, "FALSE", Toast.LENGTH_SHORT).show();
+            }
+            */
+            View controlTem;
+            ArrayList<ListaOrdenes> d = new ArrayList<ListaOrdenes>();
+
+            for (int i = 0; i < rvPrincipal.getAdapter().getItemCount(); i++) {
+                controlTem = rvPrincipal.getChildAt(i);
+                if (((CheckBox) controlTem.findViewById(R.id.chkChequeado)).isChecked()) {
+                    ListaOrdenes Orden = rvListadoAdapter.getOrdenes(i);
+                    d.add(Orden);
+                }
+            }
             Intent intent = new Intent(ListaOrdenesActivity.this, Mapa_Ordenes.class);
+
+            intent.putExtra(ARG_ORDEN, d);
             startActivity(intent);
             return true;
-        }else if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+        } else if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -217,5 +251,19 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         startActivity(intent);
         //startActivityForResult(intent, REQUEST_CODE_EDITAR);
         //Toast.makeText(ListaOrdenesActivity.this, listaOrdenes.getOrden(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCheckChange(boolean isChecked) {
+        if (isChecked) {
+            ContadorCheck++;
+
+            menuVerMapa.setEnabled(true);
+        } else {
+            ContadorCheck--;
+
+            if (ContadorCheck <= 0)
+                menuVerMapa.setEnabled(false);
+        }
     }
 }
