@@ -5,8 +5,8 @@
 
     <item
         android:id="@+id/action_agregar_materiales"
-        android:title="@string/liquidar_orden_materiales"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        android:icon="@drawable/addItem"/>
 
     <item
         android:id="@+id/action_VerMapa_Lista"
