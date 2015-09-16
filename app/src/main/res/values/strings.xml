@@ -15,8 +15,7 @@
     <string name="liquidar_orden_agregar_materiales">Agregar Materiales</string>
     <string name="liquidar_orden_materiales">Materiales</string>
     <string name="liquidar_orden_observaciones">Observaciones</string>
-    <string name="liquidar_orden_liquidar">Liquidar Orden</string>
-    <string name="rechazar_orden_rechazar">Rechazar Orden</string>
+
     <string name="liquidar_orden_cancelar">Cancelar</string>
 
     <string name="datos_orden_rechazar">Datos de la orden a rechazar:</string>
@@ -24,4 +23,16 @@
 
     <!--Action Bar: Vista ListaOrdenes-->
     <string name="verMapa">Ver Mapa</string>
+    <!--LAYOUT: RECHAZAR_ORDEN.XML-->
+    <string name="rechazar_orden_rechazar">Rechazar</string>
+
+    <!--LAYOUT: LIQUIDAR_ORDEN.XML-->
+    <string name="liquidar_orden_liquidar">Liquidar</string>
+
+
+    <!--LAYOUT: MAIN_LOGIN.XML-->
+    <string name="Usuario_login">Usuario:</string>
+    <string name="Password_login">Password:</string>
+    <string name="Ingresar_login">INGRESAR</string>
+
 </resources>

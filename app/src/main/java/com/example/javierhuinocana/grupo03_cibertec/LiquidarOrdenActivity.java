@@ -77,6 +77,9 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        /*OCULTAMOS EL BOTON: VER MAPA*/
+        menu.getItem(1).setVisible(false);
+
         return super.onCreateOptionsMenu(menu);
     }
 

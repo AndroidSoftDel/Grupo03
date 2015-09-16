@@ -160,8 +160,9 @@
         android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ver Mapa"
-            style="@style/BtnSuccess"/>
+            android:text="MAPA"
+            android:drawableLeft="@drawable/map_16"
+            />
 
         <Button
             android:id="@+id/btnLiquidar_Detalle"
@@ -169,7 +170,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Liquidar"
-            style="@style/BtnPrimary"/>
+            android:drawableLeft="@drawable/check"
+            />
 
         <Button
             android:id="@+id/btnRechazar_Detalle"
@@ -177,7 +179,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Rechazar"
-            style="@style/BtnWarning"/>
+            android:drawableRight="@drawable/rechazar"
+            />
 
     </LinearLayout>
 </LinearLayout>

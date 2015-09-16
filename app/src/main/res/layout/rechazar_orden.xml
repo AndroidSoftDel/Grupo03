@@ -97,7 +97,7 @@
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:ellipsize="end"
             android:hint="@string/liquidar_orden_observaciones"
             android:singleLine="false"
@@ -117,7 +117,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/rechazar_orden_rechazar"
-            style="@style/BtnWarning"/>
+            android:drawableLeft="@drawable/save"
+            android:textColor="#0000FF"
+            />
 
         <Button
             android:id="@+id/btnCancelar_Rechazar"
@@ -125,7 +127,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/liquidar_orden_cancelar"
-            style="@style/BtnDanger"/>
+            android:drawableRight="@drawable/undo"
+            android:textColor="#FF0000"
+            />
     </LinearLayout>
 
 </LinearLayout>

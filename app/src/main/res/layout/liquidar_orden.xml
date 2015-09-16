@@ -124,7 +124,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/liquidar_orden_liquidar"
-            style="@style/BtnPrimary"/>
+            android:textColor="#0000FF"
+            android:drawableLeft="@drawable/save"
+            />
 
         <Button
             android:id="@+id/btnCancelar_Liquidar"
@@ -132,7 +134,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/liquidar_orden_cancelar"
-            style="@style/BtnDanger"/>
+            android:drawableRight="@drawable/undo"
+            android:textColor="#FF0000"
+            />
     </LinearLayout>
 
 

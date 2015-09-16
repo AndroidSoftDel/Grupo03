@@ -257,12 +257,13 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
     public void onCheckChange(boolean isChecked) {
         if (isChecked) {
             ContadorCheck++;
-
+            menuVerMapa.setIcon(R.drawable.ver_mapa);
             menuVerMapa.setEnabled(true);
         } else {
             ContadorCheck--;
 
             if (ContadorCheck <= 0)
+                menuVerMapa.setIcon(R.drawable.ver_mapa_sin_color);
                 menuVerMapa.setEnabled(false);
         }
     }
