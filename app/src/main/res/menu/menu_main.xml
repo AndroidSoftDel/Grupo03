@@ -6,6 +6,7 @@
     <item
         android:id="@+id/action_agregar_materiales"
         app:showAsAction="always"
+        android:title="Add Mat"
         android:icon="@drawable/addItem"/>
 
     <item
