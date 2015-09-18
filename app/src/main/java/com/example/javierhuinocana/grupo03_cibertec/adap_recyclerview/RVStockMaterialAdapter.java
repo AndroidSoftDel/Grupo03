@@ -1,11 +1,17 @@
 package com.example.javierhuinocana.grupo03_cibertec.adap_recyclerview;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.javierhuinocana.grupo03_cibertec.AddMaterialLiquidarActivity;
 import com.example.javierhuinocana.grupo03_cibertec.R;
 import com.example.javierhuinocana.grupo03_cibertec.dao.StockDAO;
 import com.example.javierhuinocana.grupo03_cibertec.entities.StockMaterial;
@@ -16,20 +22,19 @@ import java.util.ArrayList;
  * Created by JMartinez on 12/09/2015.
  */
 public class RVStockMaterialAdapter extends RecyclerView.Adapter<RVStockMaterialAdapter.RVStockMaterialAdapterViewHolder> {
-    private ArrayList<StockMaterial> mLstStockMaterial,mLstStockMaterialFilter;
-    private RVStockMaterialAdapterCallBack mRVStockMaterialAdapterCallBack;
-    private String Cantidad = "";
+    private ArrayList<StockMaterial> mLstStockMaterial;//, mLstStockMaterialFilter;
+    //private RVStockMaterialAdapterCallBack mRVStockMaterialAdapterCallBack;
 
-    public interface RVStockMaterialAdapterCallBack {
-        void onStockClick(StockMaterial stockMaterial, int position);
-    }
+//    public interface RVStockMaterialAdapterCallBack {
+//        void onStockClick(StockMaterial stockMaterial, int position);
+//    }
 
-    public RVStockMaterialAdapter(RVStockMaterialAdapterCallBack mRVStockMaterialAdapterCallBack) {
-        this.mRVStockMaterialAdapterCallBack = mRVStockMaterialAdapterCallBack;
-        mLstStockMaterialFilter = new ArrayList<>();
+    public RVStockMaterialAdapter() {
+        //this.mRVStockMaterialAdapterCallBack = mRVStockMaterialAdapterCallBack;
+        //mLstStockMaterialFilter = new ArrayList<>();
         mLstStockMaterial = new ArrayList<>();
         mLstStockMaterial.addAll(new StockDAO().lstStockMaterial());
-        mLstStockMaterialFilter.addAll(mLstStockMaterial);
+        //mLstStockMaterialFilter.addAll(mLstStockMaterial);
     }
 
     @Override
@@ -38,31 +43,82 @@ public class RVStockMaterialAdapter extends RecyclerView.Adapter<RVStockMaterial
     }
 
     @Override
-    public void onBindViewHolder(RVStockMaterialAdapterViewHolder rvStockMaterialAdapterViewHolder, int i) {
-        StockMaterial stockMaterial = mLstStockMaterialFilter.get(i);
+    public void onBindViewHolder(final RVStockMaterialAdapterViewHolder rvStockMaterialAdapterViewHolder, int i) {
+        final StockMaterial stockMaterial = mLstStockMaterial.get(i);
         rvStockMaterialAdapterViewHolder.itemView.setTag(i);
-        rvStockMaterialAdapterViewHolder.itemView.setOnClickListener(itemViewOnClickListener);
+        //rvStockMaterialAdapterViewHolder.itemView.setOnClickListener(itemViewOnClickListener);
         rvStockMaterialAdapterViewHolder.tvDescripcion.setText(stockMaterial.getDescripcion());
-        rvStockMaterialAdapterViewHolder.tvStock.setText(String.valueOf(stockMaterial.getCantidad()));
-        rvStockMaterialAdapterViewHolder.tvCantidadAdd.setText(String.valueOf(Cantidad));
+        rvStockMaterialAdapterViewHolder.tvStock.setText(String.valueOf(stockMaterial.getStock()));
+        rvStockMaterialAdapterViewHolder.tvCantidadAdd.setText(String.valueOf(stockMaterial.getCantidad()));
+
+        rvStockMaterialAdapterViewHolder.tvCantidadAdd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (isNum(s.toString())) {
+                    /*ES NUMERO*/
+                    if (Integer.parseInt(s.toString()) > 0) {
+                        if (stockMaterial.getStock() < Integer.parseInt(s.toString())) {
+                            rvStockMaterialAdapterViewHolder.tvCantidadAdd.setText(String.valueOf(stockMaterial.getStock()));
+                            /*ENVIAMOS EL CURSOR AL FINAL*/
+                            ((EditText) rvStockMaterialAdapterViewHolder.tvCantidadAdd).setSelection(String.valueOf(stockMaterial.getStock()).length());
+                        }
+                        /*GRABAMOS EN EL CAMPO DE LA ENTIDAD LA CANTIDAD INGRESADA*/
+                        stockMaterial.setCantidad(Integer.parseInt(s.toString()));
+                    } else {
+                        if (!s.toString().equals("0")) {
+                            rvStockMaterialAdapterViewHolder.tvCantidadAdd.setText("0");
+                        }
+                        stockMaterial.setCantidad(Integer.parseInt("0"));
+                    }
+                }else{
+                    stockMaterial.setCantidad(Integer.parseInt("0"));
+                }
+            }
+        });
+    }
+    /*FUNCION QUE DETERMINA SI UN TEXTO ES NUMERO ENTERO*/
+    private static boolean isNum(String strNum) {
+        boolean ret = true;
+        try {
+            Integer.parseInt(strNum);
+        } catch (NumberFormatException e) {
+            ret = false;
+        }
+        return ret;
     }
 
+    /*
     View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (mRVStockMaterialAdapterCallBack != null){
-                mRVStockMaterialAdapterCallBack.onStockClick(mLstStockMaterialFilter.get((int) view.getTag()),(int) view.getTag());
+            if (mRVStockMaterialAdapterCallBack != null) {
+                mRVStockMaterialAdapterCallBack.onStockClick(mLstStockMaterial.get((int) view.getTag()), (int) view.getTag());
             }
         }
     };
+    */
+
+    public StockMaterial getMaterial(int position) {
+        return mLstStockMaterial.get(position);
+    }
+
 
     @Override
     public int getItemCount() {
-        return mLstStockMaterialFilter.size();
+        return mLstStockMaterial.size();
     }
 
     static class RVStockMaterialAdapterViewHolder extends RecyclerView.ViewHolder {
-        TextView  tvDescripcion, tvStock, tvCantidadAdd;
+        TextView tvDescripcion, tvStock, tvCantidadAdd;
 
         public RVStockMaterialAdapterViewHolder(View itemView) {
             super(itemView);

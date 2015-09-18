@@ -65,14 +65,6 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         ArrayFiltro.add("Liquidadas");
         ArrayFiltro.add("Rechazadas");
 
-        //ArrayAdapter<String> adapter_category = new ArrayAdapter<String>(ListaOrdenesActivity.this,
-          //      R.layout.item_spiner_fitro, ArrayFiltro);
-//        adapter_category
-  //              .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//cboFiltrar.setAdapter(adapter_category);
-
-
-
         /*ASOCIAMOS EL ADAPTADOR AL SPINER*/
         SpinerAdaptador = new SpinerAdapter(ListaOrdenesActivity.this,ArrayFiltro);
         cboFiltrar.setAdapter(SpinerAdaptador);
@@ -186,18 +178,18 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_VerMapa_Lista) {
             View controlTem;
-            ArrayList<ListaOrdenes> d = new ArrayList<ListaOrdenes>();
+            ArrayList<ListaOrdenes> lista = new ArrayList<ListaOrdenes>();
 
             for (int i = 0; i < rvPrincipal.getAdapter().getItemCount(); i++) {
                 controlTem = rvPrincipal.getChildAt(i);
                 if (((CheckBox) controlTem.findViewById(R.id.chkChequeado)).isChecked()) {
                     ListaOrdenes Orden = rvListadoAdapter.getOrdenes(i);
-                    d.add(Orden);
+                    lista.add(Orden);
                 }
             }
             Intent intent = new Intent(ListaOrdenesActivity.this, Mapa_Ordenes.class);
 
-            intent.putExtra(ARG_ORDEN, d);
+            intent.putExtra(ARG_ORDEN, lista);
             startActivity(intent);
             return true;
         } else if (actionBarDrawerToggle.onOptionsItemSelected(item)) {

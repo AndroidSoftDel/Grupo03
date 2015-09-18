@@ -9,12 +9,21 @@ import android.os.Parcelable;
 public class StockMaterial implements Parcelable {
     private int IdMaterial;
     private String Descripcion;
+    private int Stock;
     private int Cantidad;
 
     public StockMaterial() {
     }
 
+    public StockMaterial(int idMaterial, String descripcion, int stock, int cantidad) {
+        IdMaterial = idMaterial;
+        Descripcion = descripcion;
+        Stock = stock;
+        Cantidad = cantidad;
+    }
+
     public int getIdMaterial() {
+
         return IdMaterial;
     }
 
@@ -30,6 +39,14 @@ public class StockMaterial implements Parcelable {
         Descripcion = descripcion;
     }
 
+    public int getStock() {
+        return Stock;
+    }
+
+    public void setStock(int stock) {
+        Stock = stock;
+    }
+
     public int getCantidad() {
         return Cantidad;
     }
@@ -41,6 +58,7 @@ public class StockMaterial implements Parcelable {
     protected StockMaterial(Parcel in) {
         IdMaterial = in.readInt();
         Descripcion = in.readString();
+        Stock = in.readInt();
         Cantidad = in.readInt();
     }
 
@@ -53,6 +71,7 @@ public class StockMaterial implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(IdMaterial);
         dest.writeString(Descripcion);
+        dest.writeInt(Stock);
         dest.writeInt(Cantidad);
     }
 

@@ -2,145 +2,179 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:text="@string/datos_orden_liquidar"
+            android:textSize="17dp"
+            android:textStyle="bold" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/liquidar_orden_id" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvOrden_Liquidar"
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilOrden_Liquidar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:hint="@string/liquidar_orden_id"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tilTelefono_Liquidar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp">
 
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:hint="@string/liquidar_orden_telefono"
+                        android:singleLine="true"
+                        android:textSize="14sp"
+                        android:textStyle="normal" />
+                </android.support.design.widget.TextInputLayout>
 
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilNombre_Liquidar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_marginTop="4dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/liquidar_orden_telefono" />
+                android:ellipsize="end"
+                android:hint="@string/liquidar_orden_nombre"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilDni_Liquidar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="@string/liquidar_orden_dni"
+                android:inputType="number"
+                android:maxLength="8"
+                android:singleLine="true"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/tilObservaciones_Liquidar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:hint="@string/liquidar_orden_observaciones"
+                android:singleLine="false"
+                android:textSize="14sp"
+                android:textStyle="normal" />
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvTelefono_Liquidar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:text="@string/subtitulo_descripcion"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/subtitulo_cantidad"
+                android:gravity="center"
+                android:textStyle="bold"
+                />
         </LinearLayout>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvMaterialesLiquidar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/datos_orden_liquidar"
-        android:textStyle="bold" />
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilNombre_Liquidar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:hint="@string/liquidar_orden_nombre"
-            android:singleLine="true"
-            android:textSize="14sp"
-            android:textStyle="normal" />
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilDni_Liquidar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:hint="@string/liquidar_orden_dni"
-            android:inputType="number"
-            android:maxLength="8"
-            android:singleLine="true"
-            android:textSize="14sp"
-            android:textStyle="normal" />
-    </android.support.design.widget.TextInputLayout>
-
-    <!--<TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Datos de Liquidación:"
-        android:textStyle="bold" />
-    !-->
-
-    <android.support.design.widget.TextInputLayout
-        android:id="@+id/tilObservaciones_Liquidar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:hint="@string/liquidar_orden_observaciones"
-            android:singleLine="false"
-            android:textSize="14sp"
-            android:textStyle="normal" />
-    </android.support.design.widget.TextInputLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="20dp">
+        >
 
         <Button
             android:id="@+id/btnLiquidarOrden_Liquidar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/liquidar_orden_liquidar"
-            android:textColor="#0000FF"
             android:drawableLeft="@drawable/save"
-            />
+            android:text="@string/liquidar_orden_liquidar"
+            android:textColor="#0000FF" />
 
         <Button
             android:id="@+id/btnCancelar_Liquidar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/liquidar_orden_cancelar"
             android:drawableRight="@drawable/undo"
-            android:textColor="#FF0000"
-            />
+            android:text="@string/liquidar_orden_cancelar"
+            android:textColor="#FF0000" />
     </LinearLayout>
 
 

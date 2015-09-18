@@ -25,7 +25,8 @@ public class StockDAO {
                     StockMaterial stockMaterial = new StockMaterial();
                     stockMaterial.setIdMaterial(cursor.isNull(cursor.getColumnIndex("IdMaterial")) ? 0 : cursor.getInt(cursor.getColumnIndex("IdMaterial")));
                     stockMaterial.setDescripcion(cursor.isNull(cursor.getColumnIndex("Descripcion")) ? "" : cursor.getString(cursor.getColumnIndex("Descripcion")));
-                    stockMaterial.setCantidad(cursor.isNull(cursor.getColumnIndex("Cantidad")) ? 0 : cursor.getInt(cursor.getColumnIndex("Cantidad")));
+                    stockMaterial.setStock(cursor.isNull(cursor.getColumnIndex("Cantidad")) ? 0 : cursor.getInt(cursor.getColumnIndex("Cantidad")));
+                    stockMaterial.setCantidad(0);
                     lstMaterial.add(stockMaterial);
                 } while (cursor.moveToNext());
             }
