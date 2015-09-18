@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -59,12 +60,23 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
 
         /*CREAMOS LOS ITEM PARA EL SPINER*/
         ArrayList<String> ArrayFiltro = new ArrayList<>();
+
         ArrayFiltro.add("Pendientes");
         ArrayFiltro.add("Liquidadas");
         ArrayFiltro.add("Rechazadas");
+
+        //ArrayAdapter<String> adapter_category = new ArrayAdapter<String>(ListaOrdenesActivity.this,
+          //      R.layout.item_spiner_fitro, ArrayFiltro);
+//        adapter_category
+  //              .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//cboFiltrar.setAdapter(adapter_category);
+
+
+
         /*ASOCIAMOS EL ADAPTADOR AL SPINER*/
-        SpinerAdaptador = new SpinerAdapter(ListaOrdenesActivity.this, ArrayFiltro);
+        SpinerAdaptador = new SpinerAdapter(ListaOrdenesActivity.this,ArrayFiltro);
         cboFiltrar.setAdapter(SpinerAdaptador);
+
 
         /*CREAMOS Y/O COPIAMOS BD AL CELULAR*/
         try {
@@ -173,23 +185,6 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_VerMapa_Lista) {
-/*
-            View child = rvPrincipal.getChildAt(0);
-            CheckBox texto = (CheckBox) child.findViewById(R.id.chkChequeado);
-            if (texto.isChecked()) {
-                Toast.makeText(ListaOrdenesActivity.this, "TRUE", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(ListaOrdenesActivity.this, "FALSE", Toast.LENGTH_SHORT).show();
-            }
-
-            child = rvPrincipal.getChildAt(1);
-            CheckBox texto1 = (CheckBox) child.findViewById(R.id.chkChequeado);
-            if (texto1.isChecked()) {
-                Toast.makeText(ListaOrdenesActivity.this, "TRUE", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(ListaOrdenesActivity.this, "FALSE", Toast.LENGTH_SHORT).show();
-            }
-            */
             View controlTem;
             ArrayList<ListaOrdenes> d = new ArrayList<ListaOrdenes>();
 

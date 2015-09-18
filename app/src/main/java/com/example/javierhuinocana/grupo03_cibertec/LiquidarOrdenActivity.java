@@ -28,7 +28,7 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
     //agregar nueva repo
     private Button btnLiquidarOrden_Liquidar, btnCancelar_Liquidar;
     private TextInputLayout tilNombre_Liquidar, tilDni_Liquidar, tilObservaciones_Liquidar;
-    TextView tvOrden_Liquidar, tvTelefono_Liquidar;
+    TextView tvTelefono_Liquidar,tvOrden_Liquidar;
     ////
 
 
@@ -55,7 +55,7 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(ListaOrdenesActivity.ARG_ORDEN)) {
             listaOrdenes = getIntent().getParcelableExtra(ListaOrdenesActivity.ARG_ORDEN);
             tvOrden_Liquidar.setText(listaOrdenes.getOrden());
-            tvTelefono_Liquidar.setText(listaOrdenes.getTelefono());
+            //tvTelefono_Liquidar.setText(listaOrdenes.getTelefono());
         }
     }
 

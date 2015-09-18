@@ -13,7 +13,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Zonal:" />
+            android:text="@string/zonal_detalle" />
 
         <EditText
             android:id="@+id/txtZonal_Detalle"
@@ -31,7 +31,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Negocio:" />
+            android:text="@string/negocio_detalle" />
 
         <EditText
             android:id="@+id/txtNegocio_Detalle"
@@ -49,7 +49,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Actividad:" />
+            android:text="@string/actividad_detalle" />
 
         <EditText
             android:id="@+id/txtActividad_Detalle"
@@ -67,7 +67,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Orden:" />
+            android:text="@string/orden_detalle" />
 
         <EditText
             android:id="@+id/txtOrden_Detalle"
@@ -85,7 +85,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Teléfono:" />
+            android:text="@string/telefono_detalle" />
 
         <EditText
             android:id="@+id/txtTelefono_Detalle"
@@ -104,7 +104,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Fecha Registro:" />
+            android:text="@string/fecha_registro_detalle" />
 
         <EditText
             android:id="@+id/txtFecha_Registro_Detalle"
@@ -123,7 +123,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Cliente:" />
+            android:text="@string/cliente_detalle" />
 
         <EditText
             android:id="@+id/txtCliente_Detalle"
@@ -141,7 +141,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Dirección:" />
+            android:text="@string/direccion_detalle" />
 
         <EditText
             android:id="@+id/txtDireccion_Detalle"
