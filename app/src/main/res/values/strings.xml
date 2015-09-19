@@ -53,4 +53,12 @@
 
     <string name="liquidar_orden_agregar_materiales">Agregar Materiales</string>
     <string name="liquidar_orden_materiales">Materiales</string>
+
+    <string-array name="navigation_drawer_items_array">
+        <item>Cambiar Contraseña</item>
+        <item>Ver Stock</item>
+        <item>Cerrar Sesion</item>
+    </string-array>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 </resources>
