@@ -62,34 +62,14 @@
         android:background="#3F56BA"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvOpcion1"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:text="OpciÃ³n 1" />
-
-        <TextView
-            android:id="@+id/tvOpcion2"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:text="OpciÃ³n 2" />
-
-        <TextView
-            android:id="@+id/tvOpcion3"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:text="OpciÃ³n 3" />
-
-        <TextView
-            android:id="@+id/tvOpcion4"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:gravity="center"
-            android:text="OpciÃ³n 4" />
-
+        <ListView
+            android:id="@+id/left_drawer"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp" />
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>
