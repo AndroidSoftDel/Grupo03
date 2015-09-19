@@ -59,6 +59,10 @@
             android:name=".Mapa_Ordenes"
             android:label="Mapa Ordenes">
         </activity>
+        <activity
+            android:name=".StockUsuarioActivity"
+            android:label="Stock Materiales">
+        </activity>
     </application>
 
 </manifest>
