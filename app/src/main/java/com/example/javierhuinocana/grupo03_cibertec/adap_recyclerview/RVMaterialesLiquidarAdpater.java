@@ -17,8 +17,9 @@ import java.util.ArrayList;
 public class RVMaterialesLiquidarAdpater extends RecyclerView.Adapter<RVMaterialesLiquidarAdpater.RVMaterialesViewHolder> {
     private ArrayList<StockMaterial> mLstStockMaterial;
 
-    public RVMaterialesLiquidarAdpater() {
-        this.mLstStockMaterial = new ArrayList<StockMaterial>();
+    public RVMaterialesLiquidarAdpater(ArrayList<StockMaterial> stockMaterials) {
+        //this.mLstStockMaterial = new ArrayList<StockMaterial>();
+        this.mLstStockMaterial = stockMaterials;
     }
 
     @Override

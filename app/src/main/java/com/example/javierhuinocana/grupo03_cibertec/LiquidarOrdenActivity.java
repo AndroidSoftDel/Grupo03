@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.javierhuinocana.grupo03_cibertec.adap_recyclerview.RVListadoAdapter;
 import com.example.javierhuinocana.grupo03_cibertec.adap_recyclerview.RVMaterialesLiquidarAdpater;
 import com.example.javierhuinocana.grupo03_cibertec.dao.ListadoDAO;
 import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
@@ -29,6 +30,7 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
 
     EditText txtOrden, txtTelefono, txtAtendio, txtDni, txtObservaciones;
     ListaOrdenes listaOrdenes;
+    ArrayList<StockMaterial> listaStock;
     //agregar nueva repo
     private Button btnLiquidarOrden_Liquidar, btnCancelar_Liquidar;
     private TextInputLayout tilNombre_Liquidar, tilDni_Liquidar, tilObservaciones_Liquidar, tilOrden_Liquidar, tilTelefono_Liquidar;
@@ -71,9 +73,9 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
         tilTelefono_Liquidar.getEditText().setKeyListener(null);
         /*ENVIAMOS EL FOCO A CLIENTE*/
         tilNombre_Liquidar.requestFocus();
-
-        RVAdaptador = new RVMaterialesLiquidarAdpater();
-        RVListaMaterialesAgregados.setAdapter(RVAdaptador);
+        listaStock = new ArrayList<StockMaterial>();
+        //RVAdaptador = new RVMaterialesLiquidarAdpater(new ArrayList<StockMaterial>());
+        //RVListaMaterialesAgregados.setAdapter(RVAdaptador);
     }
 
     @Override
@@ -81,11 +83,19 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CODE_Resul && resultCode == RESULT_OK) {
-            StockMaterial d = new StockMaterial();
-            d.setDescripcion("Cable Acometida");
-            d.setCantidad(150);
-                        RVAdaptador.addItem(d);
-            RVAdaptador.notifyDataSetChanged();
+            if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(LiquidarOrdenActivity.KEY_ARG)) {
+                listaStock = getIntent().getParcelableArrayListExtra(LiquidarOrdenActivity.KEY_ARG);
+            }
+            listaStock = getIntent().getParcelableArrayListExtra(LiquidarOrdenActivity.KEY_ARG);
+            RVAdaptador = new RVMaterialesLiquidarAdpater(listaStock);
+            RVListaMaterialesAgregados.setAdapter(RVAdaptador);
+
+            //RVAdaptador.addItem(ml);
+            //StockMaterial d = new StockMaterial();
+            //d.setDescripcion("Cable Acometida");
+            //d.setCantidad(150);
+                        //RVAdaptador.addItem(d);
+            //RVAdaptador.notifyDataSetChanged();
 
 
 
