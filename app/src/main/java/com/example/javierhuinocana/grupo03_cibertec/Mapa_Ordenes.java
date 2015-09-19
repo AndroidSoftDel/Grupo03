@@ -35,7 +35,6 @@ public class Mapa_Ordenes extends AppCompatActivity implements OnMapReadyCallbac
         if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(ListaOrdenesActivity.ARG_ORDEN)) {
             //listaOrdenes = getIntent().getParcelableExtra(ListaOrdenesActivity.ARG_ORDEN);
             listaOrdenes = getIntent().getParcelableArrayListExtra(ListaOrdenesActivity.ARG_ORDEN);
-
         }
     }
 

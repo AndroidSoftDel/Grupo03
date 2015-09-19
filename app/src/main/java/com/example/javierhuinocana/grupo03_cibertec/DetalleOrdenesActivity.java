@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
 
+import java.util.ArrayList;
+
 /**
  * Created by Javier Huiñocana on 08/09/2015.
  */
@@ -17,6 +19,7 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
     EditText txtZonal,txtFecha_Registro,txtNegocio,txtActividad,txtOrden,txtTelefono,txtCliente,txtDireccion;
     Button btnVerMapa,btnLiquidar,btnRechazar;
     ListaOrdenes listaOrdenes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +68,9 @@ public class DetalleOrdenesActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = new Intent(DetalleOrdenesActivity.this,Mapa_Ordenes.class);
+            ArrayList<ListaOrdenes> lista = new ArrayList<ListaOrdenes>();
+            lista.add(listaOrdenes);
+            intent.putExtra(ListaOrdenesActivity.ARG_ORDEN,lista);
             startActivity(intent);
         }
     };
