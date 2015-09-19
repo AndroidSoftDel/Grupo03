@@ -29,7 +29,8 @@ public class RVMaterialesLiquidarAdpater extends RecyclerView.Adapter<RVMaterial
 
     @Override
     public void onBindViewHolder(RVMaterialesViewHolder holder, int position) {
-        final StockMaterial stockMaterial = mLstStockMaterial.get(position);
+        //final StockMaterial stockMaterial = mLstStockMaterial.get(position);
+        StockMaterial stockMaterial = mLstStockMaterial.get(position);
         holder.itemView.setTag(position);
         //rvStockMaterialAdapterViewHolder.itemView.setOnClickListener(itemViewOnClickListener);
         holder.lblDescripcion.setText(String.valueOf(stockMaterial.getDescripcion()));

@@ -84,9 +84,9 @@ public class LiquidarOrdenActivity extends AppCompatActivity {
 
         if (requestCode == CODE_Resul && resultCode == RESULT_OK) {
             if (getIntent().getExtras() != null && getIntent().getExtras().containsKey(LiquidarOrdenActivity.KEY_ARG)) {
-                listaStock = getIntent().getParcelableArrayListExtra(LiquidarOrdenActivity.KEY_ARG);
+               listaStock = getIntent().getParcelableArrayListExtra(LiquidarOrdenActivity.KEY_ARG);
             }
-            listaStock = getIntent().getParcelableArrayListExtra(LiquidarOrdenActivity.KEY_ARG);
+
             RVAdaptador = new RVMaterialesLiquidarAdpater(listaStock);
             RVListaMaterialesAgregados.setAdapter(RVAdaptador);
 
