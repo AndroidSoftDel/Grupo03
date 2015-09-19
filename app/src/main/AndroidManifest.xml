@@ -41,7 +41,11 @@
         </activity>
         <activity
             android:name=".DetalleOrdenesActivity"
-            android:label="Detalle de Orden">
+            android:label="Detalle de Orden"
+            android:parentActivityName=".ListaOrdenesActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ListaOrdenesActivity" />
         </activity>
         <activity
             android:name=".LiquidarOrdenActivity"
