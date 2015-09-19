@@ -15,16 +15,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.RecyclerView;
 
+import com.example.javierhuinocana.grupo03_cibertec.adap_recyclerview.DrawerItemCustomAdapter;
 import com.example.javierhuinocana.grupo03_cibertec.adap_recyclerview.RVListadoAdapter;
 import com.example.javierhuinocana.grupo03_cibertec.adap_spiner.SpinerAdapter;
 import com.example.javierhuinocana.grupo03_cibertec.dao.DataBaseHelper;
 import com.example.javierhuinocana.grupo03_cibertec.dao.ListadoDAO;
 import com.example.javierhuinocana.grupo03_cibertec.entities.ListaOrdenes;
+import com.example.javierhuinocana.grupo03_cibertec.entities.ObjectDrawerItem;
 
 import java.util.ArrayList;
 
@@ -41,15 +44,19 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
     private RecyclerView rvPrincipal;
     private RVListadoAdapter rvListadoAdapter;
     private DataBaseHelper dataBaseHelper;
+    private DrawerLayout dlmenu;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    MenuItem menuVerMapa;
+
+    private String[] mNavigationDrawerItemTitles;
+    private ListView mDrawerList;
+    private CharSequence mDrawerTitle;
+    private CharSequence mTitle;
 
     public final static String ARG_ORDEN = "orden", ARG_POSITION = "position";
     private final static int REQUEST_CODE_EDITAR = 2;
     private ArrayList<ListaOrdenes> ListaArray_Pendientes, ListaArray_Liquidadas, ListaArray_Rechazadas;
 
-    MenuItem menuVerMapa;
-
-    private DrawerLayout dlmenu;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,12 +114,26 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         rvPrincipal = (RecyclerView) findViewById(R.id.rvPrincipal);
         rvPrincipal.setHasFixedSize(true);
         rvPrincipal.setLayoutManager(new LinearLayoutManager(ListaOrdenesActivity.this));
-
         rvListadoAdapter = new RVListadoAdapter(ListaOrdenesActivity.this, ListaArray_Pendientes);
         rvPrincipal.setAdapter(rvListadoAdapter);
 
         cboFiltrar.setOnItemSelectedListener(cboFiltrarOnItemSelectedListener);
 
+        ObjectDrawerItem[] drawerItem = new ObjectDrawerItem[3];
+
+        drawerItem[0] = new ObjectDrawerItem(R.drawable.ic_action_ai_settings, "Cambiar Contraseña");
+        drawerItem[1] = new ObjectDrawerItem(R.drawable.ic_action_ai_storage, "Ver Stock");
+        drawerItem[2] = new ObjectDrawerItem(R.drawable.ic_action_ai_back, "Cerrar Sesion");
+
+        mNavigationDrawerItemTitles= getResources().getStringArray(R.array.navigation_drawer_items_array);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
+        DrawerItemCustomAdapter adapter = new DrawerItemCustomAdapter(ListaOrdenesActivity.this, R.layout.listview_item_row, drawerItem);
+        mDrawerList.setAdapter(adapter);
+        mDrawerList.setOnItemClickListener(DrawerItemClickListener);
+
+        /*PARA CONTROLAR EL MENU DESPLEGABLE*/
+        mTitle = mDrawerTitle = getTitle();
         dlmenu = (DrawerLayout) findViewById(R.id.MenuDesplegable_ListaOrdenes);
         actionBarDrawerToggle = new ActionBarDrawerToggle(ListaOrdenesActivity.this, dlmenu, R.string.app_name, R.string.app_name) {
             @Override
@@ -137,6 +158,28 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
         getSupportActionBar().setHomeButtonEnabled(true);
 
     }
+
+    ListView.OnItemClickListener DrawerItemClickListener = new ListView.OnItemClickListener(){
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            switch (position) {
+                case 0:
+
+                    break;
+                case 1:
+                    Intent intent = new Intent(ListaOrdenesActivity.this, StockUsuarioActivity.class);
+                    startActivity(intent);
+                    break;
+                case 2:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    };
 
     /*VARIABLE PARA IR SUMANDO O DISMINUYENDO CUANTOAS ORDENES TIENEN CHECK*/
     private int ContadorCheck = 0;
