@@ -48,7 +48,7 @@
     <string name="liquidar_orden_liquidar">Liquidar</string>
     <string name="liquidar_orden_cancelar">Cancelar</string>
 
-    <string name="subtitulo_descripcion"><u>Descripón</u></string>
+    <string name="subtitulo_descripcion"><u>Descripción</u></string>
     <string name="subtitulo_cantidad"><u>Cantidad</u></string>
 
     <string name="liquidar_orden_agregar_materiales">Agregar Materiales</string>
