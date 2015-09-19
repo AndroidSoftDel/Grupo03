@@ -15,12 +15,6 @@ public class StockMaterial implements Parcelable {
     public StockMaterial() {
     }
 
-    public StockMaterial(int idMaterial, String descripcion, int stock, int cantidad) {
-        IdMaterial = idMaterial;
-        Descripcion = descripcion;
-        Stock = stock;
-        Cantidad = cantidad;
-    }
 
     public int getIdMaterial() {
 

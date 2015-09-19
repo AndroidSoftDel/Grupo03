@@ -25,6 +25,7 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
 
     private ArrayList<ListaOrdenes> mLstListaOrdenesFilter;
     private RVListadoAdapterCallBack mRVListadoAdapterCallBack;
+    private ArrayList<ListaOrdenes> mListaChequeada;
 
     public interface RVListadoAdapterCallBack {
         void onListadoClick(ListaOrdenes listaOrdenes, int position);
@@ -34,7 +35,7 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
     public RVListadoAdapter(RVListadoAdapterCallBack mRVListadoAdapterCallBack,ArrayList<ListaOrdenes> miLista) {
         this.mRVListadoAdapterCallBack = mRVListadoAdapterCallBack;
 
-
+        mListaChequeada = new ArrayList<>();
         mLstListaOrdenesFilter = new ArrayList<>();
         //mLstListaOrdenes = new ArrayList<>();
         //mLstListaOrdenes.addAll(new ListadoDAO().listOrdenes());
@@ -47,8 +48,8 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
     }
 
     @Override
-    public void onBindViewHolder(RVListadoAdapterViewHolder rvListadoAdapterViewHolder, int i) {
-        ListaOrdenes listaOrdenes = mLstListaOrdenesFilter.get(i);
+    public void onBindViewHolder(final RVListadoAdapterViewHolder rvListadoAdapterViewHolder, int i) {
+        final ListaOrdenes listaOrdenes = mLstListaOrdenesFilter.get(i);
         rvListadoAdapterViewHolder.itemView.setTag(i);
         rvListadoAdapterViewHolder.itemView.setOnClickListener(itemViewOnClickListener);
         rvListadoAdapterViewHolder.tvOrden.setText(listaOrdenes.getOrden());
@@ -61,6 +62,11 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (mRVListadoAdapterCallBack != null)
                     mRVListadoAdapterCallBack.onCheckChange(isChecked);
+                if(rvListadoAdapterViewHolder.chkChequeado.isChecked()){
+                    mListaChequeada.add(listaOrdenes);
+                }else {
+                    mListaChequeada.remove(listaOrdenes);
+                }
             }
         });
 
@@ -76,6 +82,10 @@ public class RVListadoAdapter extends RecyclerView.Adapter<RVListadoAdapter.RVLi
 
     public ListaOrdenes getOrdenes(int position){
         return mLstListaOrdenesFilter.get(position);
+    }
+
+    public  ArrayList<ListaOrdenes> listaChequeada(){
+        return mListaChequeada;
     }
 
     @Override

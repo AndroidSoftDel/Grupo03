@@ -230,6 +230,7 @@ public class ListaOrdenesActivity extends AppCompatActivity implements RVListado
                     lista.add(Orden);
                 }
             }
+            //lista = rvListadoAdapter.listaChequeada();
             Intent intent = new Intent(ListaOrdenesActivity.this, Mapa_Ordenes.class);
 
             intent.putExtra(ARG_ORDEN, lista);

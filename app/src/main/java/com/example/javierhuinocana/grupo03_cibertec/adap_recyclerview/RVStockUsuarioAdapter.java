@@ -42,7 +42,7 @@ public class RVStockUsuarioAdapter extends RecyclerView.Adapter<RVStockUsuarioAd
         rvStockUsuarioAdapterViewHolder.itemView.setTag(i);
         rvStockUsuarioAdapterViewHolder.itemView.setOnClickListener(itemViewOnClickListener);
         rvStockUsuarioAdapterViewHolder.tvDescripcion.setText(stockMaterial.getDescripcion());
-        rvStockUsuarioAdapterViewHolder.tvStock.setText(String.valueOf(stockMaterial.getCantidad()));
+        rvStockUsuarioAdapterViewHolder.tvStock.setText(String.valueOf(stockMaterial.getStock()));
     }
 
     View.OnClickListener itemViewOnClickListener = new View.OnClickListener() {
